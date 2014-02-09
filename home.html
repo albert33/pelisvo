@@ -71,16 +71,19 @@
                 </ul>   
             </div>  <!-- FI PESTANYES PROGRAMACIO-->
             
-            <ul class="nav nav-pills nav-justified" style="border-bottom: 1px solid rgb(214, 222, 230); padding-bottom: 5px;"><!-- inici subpestanyes -->
-              <li class="active"><a href="#">Capítols pendents</a></li>
-              <li><a href="#">Series que segueixes</a></li>
-              <li><a href="#">Series ja vistes</a></li>
-            </ul><!-- fi subpestanyes -->
+            <div class="btn-group btn-group-justified">
+              <div class="btn-group">
+                <button type="button" class="btn btn-default active" style="width:60%">Capítols pendents</button>
+                <button type="button" class="btn btn-default" style="width:60%">Series que segueixes</button>
+                <button type="button" class="btn btn-default" style="width:60%">Series ja vistes</button>
+              </div>
+            </div>
+            <p>
             
             <div class="row" id="panell-scrollbar"> <!-- CONTENIDOR ITEMS -->
               
               <div class="contenidor-schedule-item"><!-- item -->
-                <a href="#">
+                <a href="serieInfo.html">
                   <img src="http://ia.media-imdb.com/images/M/MV5BMTM4Nzc4MDQ3OF5BMl5BanBnXkFtZTgwMTYzMTAwMDE@._V1_SY317_CR12,0,214,317_.jpg" class="caratula-schedule">
                   <div class="contenidor-schedule-caption">
                     <h5 class="caption-titol">Agentes de SHIELD QuePassaQuanElTextEsMassaLlarg</h5>
@@ -285,14 +288,14 @@
             
             <div class="well" style="margin-bottom:100px;"><!-- Contenidor slider -->
      
-                <div id="myCarousel" class="carousel slide">
+                <div id="myCarousel2" class="carousel slide">
                  
                   <ol class="carousel-indicators"><!-- Indica el nombre d'items totals -->
-                      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                      <li data-target="#myCarousel" data-slide-to="1"></li>
-                      <li data-target="#myCarousel" data-slide-to="2"></li>
-                      <li data-target="#myCarousel" data-slide-to="3"></li>
-                      <li data-target="#myCarousel" data-slide-to="4"></li>
+                      <li data-target="#myCarousel2" data-slide-to="0" class="active"></li>
+                      <li data-target="#myCarousel2" data-slide-to="1"></li>
+                      <li data-target="#myCarousel2" data-slide-to="2"></li>
+                      <li data-target="#myCarousel2" data-slide-to="3"></li>
+                      <li data-target="#myCarousel2" data-slide-to="4"></li>
                   </ol>
                  
                 <!-- Carousel items -->
@@ -360,8 +363,8 @@
                  
                 </div><!--/carousel-inner-->
                  
-                <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
-                <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
+                <a class="left carousel-control" href="#myCarousel2" data-slide="prev">‹</a>
+                <a class="right carousel-control" href="#myCarousel2" data-slide="next">›</a>
                 </div><!--/myCarousel-->
                  
                 </div><!--/well-->
@@ -388,6 +391,7 @@
 	<!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery.js"></script>
     <script src="js/jquery.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="js/concatenat.min.js"></script>
