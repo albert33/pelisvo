@@ -346,16 +346,110 @@ background-image: linear-gradient(to bottom, rgb(232, 232, 225) 0%, rgb(245, 245
    float: right;
 }
 
-/*
-.popup-taula-uploader {
-   width: 150px;
-   height: 40px;
-   text-overflow: ellipsis;
-   overflow: hidden;
+
+/* COMENTARIS */
+
+.div-comentar {
+   background-color: #d3d3d3;
+   width: 650px;
+   height: 170px;
+   margin-bottom: 10px;
+   border-radius: 4px;
+}
+
+#div-comentar-textarea {
+   width: 95%;
+   height: 100px;
+   padding: 5px;
+   margin: 10px;
+}
+
+.div-comentar-enviar {
+   float: right;
+   margin-right: 5px;
+}
+
+.div-order-opcions {
+   margin-bottom: 20px;
+}
+
+.order-opcions {
+   cursor: pointer;
+}
+
+.div-comments {
+   width: 100%;
+   height: 500px;
+   overflow-x: hidden;
+   overflow-y: scroll;
+   margin-bottom: 100px;
+}
+
+
+
+.div-avatar {
+   float: left;
+}
+
+.avatar-user {
+   width: 50px;
+   height: 50px;
+   padding: 1px;
+   border: 1px solid #E6E6E6;
+   margin-left: 8px;
+   margin-top: 7px;
+   border-radius: 100%;
+}
+
+.div-user-comment {
+   float: left;
+   width: 500px;
+   padding: 10px;
+   border: 1px solid #D9D9D9;
+   border-radius: 5px;
+   margin-left: 15px;
+   margin-bottom: 10px;
+}
+
+.comment-first-line {
+   width: 100%;
+}
+
+.nickname-user {
    display: inline-block;
+}
+
+.dia-comentari {
+   color: #666;
+}
+
+.comentari-principal {
+   color: black;
+}
+
+.comment-last-line {
+   width: 100%;
+   bottom: 0px;
+   margin-top: 10px;
+}
+
+.comment-respondre {
    color: rgb(41, 128, 185);
 }
-*/
+
+.comment-last-line-dret {
+   float: right;
+   opacity: 0.6;
+}
+
+.comment-favor {
+   color: #00CC00;
+}
+
+.comment-contra {
+   color: #CC0000;
+}
+
 
 
 /* SCHEDULE */
