@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SERIE</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+<!-- Bootstrap css & Custom -->
+    <link href="css/customcss.css" rel="stylesheet" media="screen">
+    <link href="css/concatenat.css" rel="stylesheet" media="screen">
+
+<!-- Icones social media buttons -->
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+    
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+    </style>
+   
+  </head>
+	<body class="body-home">
+
+		<div class="navbar navbar-inverse navbar-fixed-top">
+			<div class="navbar-inner" id="navbar-custom">
+				<div class="container" id="container-home">
+					<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="brand" href="#" id="navbar-full">BRAND LOGO</a>
+					
+            <div class="nav-collapse collapse">
+              <ul class="nav">
+                  <li><a href="home.html" id="navbar-full">HOME</a></li>
+                  <li><a href="series.html" id="navbar-full">SERIES</a></li>
+              		<li><a href="#movies" id="navbar-full">MOVIES</a></li>
+                  <li><a href="#tvshows" id="navbar-full">TV SHOWS</a></li>
+                  <li><a href="#documentaries" id="navbar-full">DOCUMENTARIES</a></li>
+              		<li class="dropdown">
+               		 <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="navbar-full">ACCOUNT<b class="caret"></b></a>
+    								<ul class="dropdown-menu" id="navbar-account-dropdown">
+    									<li><a href="#" id="navbar-full">Find friends</a></li>
+    									<li><a href="#" id="navbar-full">Donations</a></li>
+    									<li><a href="#" id="navbar-full">Preferences</a></li>
+    									<li class="divider"></li>
+    									<li><a href="#" id="navbar-full">Log out</a></li>
+    								</ul>
+    							</li>
+						    </ul>
+						<form class="navbar-search pull-right" >
+						<input type="text" class="search-query" placeholder="Search" id="search-button-custom">
+						</form>
+					</div><!--/.nav-collapse -->
+				</div>
+			</div>
+		</div><!-- FI NAVBAR -->
+		
+		<div class="contenidor-caratula-opcions"> <!-- INICI CONTENIDOR ESQUERRA (CARATULA+OPCIONS)-->
+		  
+		  <img class="caratula-esquerra" src="http://ia.media-imdb.com/images/M/MV5BMTM4Nzc4MDQ3OF5BMl5BanBnXkFtZTgwMTYzMTAwMDE@._V1_SY317_CR12,0,214,317_.jpg" alt="Agents of S.H.I.E.L.D.">
+		  
+  		  <div class="btn-group" id="div-boto-opcions"> <!-- DIV BOTÓ OPCIONS-->
+          <button type="button" class="btn btn-primary dropdown-toggle" id="boto-opcions" data-toggle="dropdown">
+            Afegir a... &nbsp;&nbsp;<span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">No seguir</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Seguir</a></li>
+            <li><a href="#">Pendent</a></li>
+            <li><a href="#">Ja vista</a></li>
+          </ul>
+        </div>
+      
+      <div class="box-seguidors"> 
+        <p class="text-box-seguidors">Seguidors:</p>
+        <p class="text-box-seguidors">1402</p>
+      </div>
+      
+		</div> <!-- FI CONTENIDOR ESQUERRA (CARATULA+OPCIONS)-->
+		
+		
+		
+		<div class="contenidor-content-serie"> <!-- INICI CONTENIDOR CONTENT SERIE -->
+		  
+		  <div class="div-encapçalament-serie"><!-- inici encapçalament titol serie -->
+  		  
+  		  <div class="div-serie-header">
+    		  <p class="titol-serie">
+    		    Agents of S.H.I.E.L.D.
+    		  </p>
+    		  <div class="div-subinfo-serie">
+      		  <div class="alert alert-success" id="estat-serie">
+              En emissió
+            </div>
+            <div class="div-info-basica-serie">
+              1 temporada &nbsp;&nbsp; | &nbsp;&nbsp; 23 capítols totals
+            </div>
+    		  </div>
+  		  </div>
+  		  <div class="div-puntuacio-serie"> <!-- inici contenidor puntuacio -->
+  		    <div class="caixa-puntuacio-general">
+  		      8.5
+  		    </div>
+  		    <div class="caixa-teva-puntuacio-general">
+  		        estrelles
+  		    </div>
+  		  </div> <!-- fi contenidor puntuacio -->
+  		  
+		  </div><!-- fi encapçalament titol serie -->
+		
+		
+      <div class="btn-group btn-group-justified" id="pestanyes-accions">
+        <div class="btn-group">
+          <button type="button" class="btn btn-default" style="width:50%">Informació</button>
+          <button type="button" class="btn btn-default" style="width:50%">Capítols</button>
+          <button type="button" class="btn btn-default active" style="width:50%">Crítiques</button>
+          <button type="button" class="btn btn-default" style="width:50%">Notícies</button>
+        </div>
+      </div>
+      
+      
+      <div class="panell"><!-- inici panell contingut -->
+      
+        <div class="div-comentar"><!-- inici panell gran comentari -->
+          <textarea type="text" id="div-comentar-textarea" class="form-control" placeholder="Escriu el teu comentari..."></textarea>
+          <div class="div-comentar-enviar">
+            <button class="btn btn-primary" type="button">Enviar</button>
+          </div>      
+        </div> <!-- fi panell gran comentari-->
+        
+        <div class="div-order-opcions"><!-- inici ordenar comentaris -->
+          <span class="order-opcions">Ordenar per data</span> &nbsp;&nbsp;|&nbsp;&nbsp; <span class="order-opcions">Ordenar per vots</span>      
+        </div><!-- fi ordenar comentaris -->
+        
+        <div class="div-comments"><!-- inici panell comentaris users -->
+          
+          <div><!-- inici d'un comentari -->
+            <div class="div-avatar">
+              <a href=""><img class="avatar-user" src="http://upload.wikimedia.org/wikipedia/commons/a/a0/Bryan_Cranston_by_Gage_Skidmore_2.jpg"></a>
+            </div>
+            <div class="div-user-comment">
+              <div class="comment-first-line">
+                <span class="nickname-user"><a href=""><h5>Heisemberg_BD</h5></a></span> &nbsp;&nbsp; <span class="dia-comentari">fa 7 dies</span>
+              </div>
+              <div class="comentari-principal">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id vehicula mauris, vitae porttitor lectus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nunc sollicitudin nulla tempus mauris consequat porttitor. Aenean turpis urna, semper eu hendrerit nec, sagittis at erat. Etiam vestibulum lorem laoreet urna tempor porttitor. Suspendisse tristique molestie orci, in hendrerit turpis vestibulum in. Cras vehicula nisl in turpis porta dapibus. Etiam posuere diam quis nulla congue, a posuere justo scelerisque. Vivamus suscipit, orci at hendrerit dignissim, eros risus faucibus quam, quis sodales orci lorem in turpis. Cras fringilla lobortis fringilla. Nam a luctus quam.
+              </div>
+              <div class="comment-last-line">
+                <a href="#"><span class="comment-respondre">Respondre</span></a>
+                <div class="comment-last-line-dret">
+                  <a href="#"><span class="comment-favor">A favor (6)</span></a>
+                  <a href="#"><span class="comment-contra">En contra (3)</span></a>
+                  <a href="#"><span class="comment-contra">Spoiler</span></a>
+                </div>
+              </div>
+            </div>
+          </div><!-- fi d'un comentari -->
+          
+          <div><!-- inici d'un comentari -->
+            <div class="div-avatar">
+              <a href=""><img class="avatar-user" src="http://upload.wikimedia.org/wikipedia/commons/0/01/Cristiano_Ronaldo_vs_AC_Milan%2C_August_2012_at_Yankee_Stadium.jpg"></a>
+            </div>
+            <div class="div-user-comment">
+              <div class="comment-first-line">
+                <span class="nickname-user"><a href=""><h5>cr7</h5></a></span> &nbsp;&nbsp; <span class="dia-comentari">fa 10 dies</span>
+              </div>
+              <div class="comentari-principal">
+                No m'agrada la serie!!!!!!!!
+              </div>
+              <div class="comment-last-line">
+                <a href="#"><span class="comment-respondre">Respondre</span></a>
+                <div class="comment-last-line-dret">
+                  <a href="#"><span class="comment-favor">A favor (0)</span></a>
+                  <a href="#"><span class="comment-contra">En contra (26)</span></a>
+                  <a href="#"><span class="comment-contra">Spoiler</span></a>
+                </div>
+              </div>
+            </div>
+          </div><!-- fi d'un comentari -->
+          
+          <div><!-- inici d'un comentari -->
+            <div class="div-avatar">
+              <a href=""><img class="avatar-user" src="http://upload.wikimedia.org/wikipedia/commons/6/68/ClintEastwoodSept10TIFF.jpg"></a>
+            </div>
+            <div class="div-user-comment">
+              <div class="comment-first-line">
+                <span class="nickname-user"><a href=""><h5>Dirty Harry</h5></a></span> &nbsp;&nbsp; <span class="dia-comentari">fa 1 mes</span>
+              </div>
+              <div class="comentari-principal">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ultricies consectetur lobortis. Nulla quis leo quis mi vulputate tempus. Mauris vitae enim vel justo placerat consectetur. Aliquam vestibulum malesuada ultricies. Praesent sagittis facilisis tellus vel accumsan. Vestibulum varius felis vitae luctus feugiat. Suspendisse consequat massa nec neque ullamcorper, eget scelerisque sapien consectetur. Praesent enim sem, consectetur non vulputate eget, malesuada in erat.
+                <p>Quisque mauris lectus, interdum nec est at, hendrerit volutpat erat. Maecenas tellus felis, consectetur eget dolor non, dictum rutrum leo. Duis quis urna id purus tempor feugiat. Quisque egestas mattis eros tristique rutrum. Proin suscipit mauris id lacinia scelerisque. Nam tincidunt ultrices metus porttitor cursus. Proin vehicula libero sapien, non facilisis nibh lobortis sed. Vestibulum vel volutpat ante.
+                <p>Integer interdum mauris leo, ut rutrum ante eleifend quis. Nunc sit amet mi eu augue convallis pharetra. Duis in quam in nunc sodales faucibus. Mauris quis arcu leo. Etiam vitae nulla justo. Nunc egestas, erat non gravida viverra, orci nisi sagittis elit, sed elementum eros eros eu nunc. Donec pretium orci vitae libero tristique elementum. Praesent malesuada, est nec lacinia tincidunt, metus lacus venenatis turpis, ornare malesuada urna nunc et tellus. Donec quis dignissim leo. Aenean ut est molestie, venenatis erat ut, placerat enim. 
+              </div>
+              <div class="comment-last-line">
+                <a href="#"><span class="comment-respondre">Respondre</span></a>
+                <div class="comment-last-line-dret">
+                  <a href="#"><span class="comment-favor">A favor (7)</span></a>
+                  <a href="#"><span class="comment-contra">En contra (2)</span></a>
+                  <a href="#"><span class="comment-contra">Spoiler</span></a>
+                </div>
+              </div>
+            </div>
+          </div><!-- fi d'un comentari -->
+          
+          <div><!-- inici d'un comentari -->
+            <div class="div-avatar">
+              <a href=""><img class="avatar-user" src="http://upload.wikimedia.org/wikipedia/commons/a/a8/YaoMingonoffense2_crop.jpg"></a>
+            </div>
+            <div class="div-user-comment">
+              <div class="comment-first-line">
+                <span class="nickname-user"><a href=""><h5>Spammer</h5></a></span> &nbsp;&nbsp; <span class="dia-comentari">fa 1 mes</span>
+              </div>
+              <div class="comentari-principal">
+                <img src="img/altres/spoiler.png"> &nbsp;&nbsp;&nbsp; <button type="button" class="btn btn-warning">Veure comentari</button> 
+              </div>
+              <div class="comment-last-line">
+                <a href="#"><span class="comment-respondre">Respondre</span></a>
+                <div class="comment-last-line-dret">
+                  <a href="#"><span class="comment-favor">A favor (0)</span></a>
+                  <a href="#"><span class="comment-contra">En contra (14)</span></a>
+                  <a href="#"><span class="comment-contra">Spoiler</span></a>
+                </div>
+              </div>
+            </div>
+          </div><!-- fi d'un comentari -->
+          
+        </div><!-- fi panell comentaris users -->
+      
+      
+      
+      </div> <!-- fi panell contingut -->
+		
+		
+		</div> <!-- FI CONTENIDOR CONTENT SERIE -->
+		
+		
+		
+		
+		<div class="panel-footer" id="footer"> <!-- INICI DEL FOOTER-->
+      <div id="contenidor-footer-esquerra"><!-- INICI DIV FOOTER ESQUERRA -->
+        <h4 align="center">FOLLOW US ON:</h4>
+        <p align="center">
+        <button class="btn btn-facebook"><i class="fa fa-facebook"></i> | Facebook</button>
+        <button class="btn btn-twitter"><i class="fa fa-twitter"></i>   | Twitter</button>
+        <button class="btn btn-youtube"><i class="fa fa-youtube"></i>   | Youtube</button>   
+        </p>     
+      </div><!-- FI DIV FOOTER ESQUERRA -->
+      
+      <div id="contenidor-footer-dret"><!-- INICI DIV FOOTER DRETA -->
+        <p align="center">Series i Pelis VO &copy; 2014  &nbsp;&nbsp;|&nbsp;&nbsp;  Legal advice &nbsp;&nbsp;|&nbsp;&nbsp;  Contact</p>
+      </div><!-- FI DIV FOOTER DRETA -->
+    </div><!-- FI DEL FOOTER -->
+
+
+	<!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="js/jquery.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+	</body>
+</html>
