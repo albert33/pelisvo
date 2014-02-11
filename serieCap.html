@@ -7,7 +7,7 @@
     
 <!-- Bootstrap css & Custom -->
     <link href="css/customcss.css" rel="stylesheet" media="screen">
-    <link href="css/concatenat.min.css" rel="stylesheet" media="screen">
+    <link href="css/concatenat.css" rel="stylesheet" media="screen">
 
 <!-- Icones social media buttons -->
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
@@ -41,7 +41,7 @@
                   <li><a href="#documentaries" id="navbar-full">DOCUMENTARIES</a></li>
               		<li class="dropdown">
                		 <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="navbar-full">ACCOUNT<b class="caret"></b></a>
-    								<ul class="dropdown-menu">
+    								<ul class="dropdown-menu" id="navbar-account-dropdown">
     									<li><a href="#" id="navbar-full">Find friends</a></li>
     									<li><a href="#" id="navbar-full">Donations</a></li>
     									<li><a href="#" id="navbar-full">Preferences</a></li>
@@ -72,7 +72,6 @@
             <li><a href="#">Seguir</a></li>
             <li><a href="#">Pendent</a></li>
             <li><a href="#">Ja vista</a></li>
-            <li class="divider"></li>
           </ul>
         </div>
       
@@ -159,50 +158,269 @@
           <tr>
             <td class="taula-capitols-linia">
               <div class="taula-capitols-numero">
-                <a href="" ><p class="taula-capitols-num">1x01</p></a>
+                <a href="#myModal" data-toggle="modal"><p class="taula-capitols-num">1x01</p></a>
               </div>
               <div class="taula-capitols-nom">
                 <a href="#myModal" data-toggle="modal"><p class="taula-capitols-titol">Pilot</p></a>
-                <!-- POPUP
-                <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                  <div class="modal-header" style="height:50px;">
-                    <img  style="float:left;" src="http://static4.wikia.nocookie.net/__cb20130805111808/marvelcinematicuniverse/images/f/fa/Agents_of_SHIELD_poster.jpg" width="30px" height="40px">
-                    <div  style="float:left;width:450px;">
-                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                      <h3 id="myModalLabel">Agents of S.H.I.E.L.D</h3>
-                      <h5>1x01 - Pilot</h5>
+                
+                
+                <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width:650px;">
+                  <div class="modal-header" id="popup-header">
+                    <img class="popup-header-caratula" src="http://ia.media-imdb.com/images/M/MV5BMTM4Nzc4MDQ3OF5BMl5BanBnXkFtZTgwMTYzMTAwMDE@._V1_SY317_CR12,0,214,317_.jpg">
+                    <div class="popup-header-titol">
+                      <table style="width: 100%;">
+                        <tr>
+                          <td>
+                            <h3>Agents of S.H.I.E.L.D</h3>
+                          </td>
+                          <td>
+                            <button id="popup-header-close" type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                          </td 
+                        </tr>
+                        <tr>
+                          <td>
+                            <h5>1x01 - Pilot</h5>
+                          </td>
+                          <td>
+                            <div class="popup-header-close">
+                              <a href="">Veure links</a> 
+                              &nbsp;&nbsp;|&nbsp;&nbsp;
+                              <a href="">Veure comentaris</a>
+                            </div>
+                          </td>
+                        </tr>
+                      </table>
                     </div>
                   </div>
-                  <div class="modal-body">
-                    <div>
-                      <div style="border-bottom:1px solid;">
-                        ENLLAÇOS RECOMANATS
-                      </div>
-                      <div>
-                        Enllaç de pagament 1
-                      </div>
-                      <div style="border-bottom:1px solid;">
-                        VEURE ONLINE
-                      </div>
-                      <div>
-                        Enllaç online 1<br>
-                        Enllaç online 2<br>
-                        Enllaç online 3
-                      </div>
-                      <div style="border-bottom:1px solid;">
-                        DESCARREGA
-                      </div>
-                      <div>
-                        Enllaç descarrega 1<br>
-                        Enllaç descarrega 2
-                      </div>
-                    </div>
+                  <div class="modal-body" id="popup-body">
+                    <table>
+                      <tr>
+                        <h4 class="capçalera-panell">ENLLAÇOS RECOMANATS</h4>
+                      </tr>
+                      <tr>
+                            <div class="server-logo">
+                              <img src="img/servers/itunes.png">
+                            </div>
+                            <div class="popup-taula-flag">
+                              <img src="img/flags/eng.png">  
+                            </div>
+                            <div class="popup-taula-flag">
+                              <img src="img/flags/subesp.png">  
+                            </div>
+                            <div class="progress" id="popup-qualitat">
+                              <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
+                                <span class="sr-only">DVD-Rip</span>
+                              </div>
+                            </div>
+                            <div class="popup-taula-report">
+                              <img src="img/altres/reportar.png">
+                            </div>
+                      </tr>
+                      <tr>
+                            <div class="server-logo">
+                              <img class="serve-logo" src="img/servers/mitele.png">
+                            </div>
+                            <div class="popup-taula-flag">
+                              <img src="img/flags/esp.png">  
+                            </div>
+                            <div class="popup-taula-flag">
+                              <img src="img/flags/nosub.png">  
+                            </div>
+                            <div class="progress" id="popup-qualitat">
+                              <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
+                                <span class="sr-only">DVD-Rip</span>
+                              </div>
+                            </div>
+                            <div class="popup-taula-report">
+                              <img src="img/altres/reportar.png">
+                            </div>
+                      </tr>
+                      <tr>
+                            <div class="server-logo">
+                              <img class="serve-logo" src="img/servers/wuakitv.png">
+                            </div>
+                            <div class="popup-taula-flag">
+                              <img src="img/flags/esp.png">  
+                            </div>
+                            <div class="popup-taula-flag">
+                              <img src="img/flags/nosub.png">  
+                            </div>
+                            <div class="progress" id="popup-qualitat">
+                              <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
+                                <span class="sr-only">DVD-Rip</span>
+                              </div>
+                            </div>
+                            <div class="popup-taula-report">
+                              <img src="img/altres/reportar.png">
+                            </div>
+                      </tr>
+                      <tr>
+                        <h4 class="capçalera-panell">VEURE ONLINE</h4>
+                      </tr>
+                      <tr>
+                            <div class="server-logo">
+                              <img class="serve-logo" src="img/servers/magnovideo.png">
+                            </div>
+                            <div class="popup-taula-flag">
+                              <img src="img/flags/eng.png">  
+                            </div>
+                            <div class="popup-taula-flag">
+                              <img src="img/flags/subesp.png">  
+                            </div>
+                            <div class="progress" id="popup-qualitat">
+                              <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
+                                <span class="sr-only">DVD-Rip</span>
+                              </div>
+                            </div>
+                            <div class="popup-taula-report">
+                              <img src="img/altres/reportar.png">
+                            </div>
+                      </tr>
+                      <tr>
+                            <div class="server-logo">
+                              <img class="serve-logo" src="img/servers/streamcloud.png">
+                            </div>
+                            <div class="popup-taula-flag">
+                              <img src="img/flags/esp.png">  
+                            </div>
+                            <div class="popup-taula-flag">
+                              <img src="img/flags/nosub.png">  
+                            </div>
+                            <div class="progress" id="popup-qualitat">
+                              <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
+                                <span class="sr-only">DVD-Rip</span>
+                              </div>
+                            </div>
+                            <div class="popup-taula-report">
+                              <img src="img/altres/reportar.png">
+                            </div>
+                      </tr>
+                      <tr>
+                            <div class="server-logo">
+                              <img class="serve-logo" src="img/servers/playedto.png">
+                            </div>
+                            <div class="popup-taula-flag">
+                              <img src="img/flags/ita.png">  
+                            </div>
+                            <div class="popup-taula-flag">
+                              <img src="img/flags/subcat.png">  
+                            </div>
+                            <div class="progress" id="popup-qualitat">
+                              <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">
+                                <span class="sr-only">SQ-Screener</span>
+                              </div>
+                            </div>
+                            <div class="popup-taula-report">
+                              <img src="img/altres/reportar.png">
+                            </div>
+                      </tr>
+                      <tr>
+                            <div class="server-logo">
+                              <img class="serve-logo" src="img/servers/playedto.png">
+                            </div>
+                            <div class="popup-taula-flag">
+                              <img src="img/flags/esp.png">  
+                            </div>
+                            <div class="popup-taula-flag">
+                              <img src="img/flags/subcat.png">  
+                            </div>
+                            <div class="progress" id="popup-qualitat">
+                              <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
+                                <span class="sr-only">DVD-Rip</span>
+                              </div>
+                            </div>
+                            <div class="popup-taula-report">
+                              <img src="img/altres/reportar.png">
+                            </div>
+                      </tr>
+                      <tr>
+                            <div class="server-logo">
+                              <img class="serve-logo" src="img/servers/allmyvideos.png">
+                            </div>
+                            <div class="popup-taula-flag">
+                              <img src="img/flags/esp.png">  
+                            </div>
+                            <div class="popup-taula-flag">
+                              <img src="img/flags/nosub.png">  
+                            </div>
+                            <div class="progress" id="popup-qualitat">
+                              <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
+                                <span class="sr-only">DVD-Rip</span>
+                              </div>
+                            </div>
+                            <div class="popup-taula-report">
+                              <img src="img/altres/reportar.png">
+                            </div>
+                      </tr>
+                      
+                      <tr>
+                        <h4 class="capçalera-panell">DESCARREGA</h4>
+                      </tr>
+                      <tr>
+                            <div class="server-logo">
+                              <img class="serve-logo" src="img/servers/putlocker.png">
+                            </div>
+                            <div class="popup-taula-flag">
+                              <img src="img/flags/eng.png">  
+                            </div>
+                            <div class="popup-taula-flag">
+                              <img src="img/flags/subesp.png">  
+                            </div>
+                            <div class="progress" id="popup-qualitat">
+                              <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
+                                <span class="sr-only">DVD-Rip</span>
+                              </div>
+                            </div>
+                            <div class="popup-taula-report">
+                              <img src="img/altres/reportar.png">
+                            </div>
+                      </tr>
+                      <tr>
+                            <div class="server-logo">
+                              <img class="serve-logo" src="img/servers/rapidgator.png">
+                            </div>
+                            <div class="popup-taula-flag">
+                              <img src="img/flags/eng.png">  
+                            </div>
+                            <div class="popup-taula-flag">
+                              <img src="img/flags/subesp.png">  
+                            </div>
+                            <div class="progress" id="popup-qualitat">
+                              <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
+                                <span class="sr-only">DVD-Rip</span>
+                              </div>
+                            </div>
+                            <div class="popup-taula-report">
+                              <img src="img/altres/reportar.png">
+                            </div>
+                      </tr>
+                      <tr>
+                            <div class="server-logo">
+                              <img class="serve-logo" src="img/servers/mega.png">
+                            </div>
+                            <div class="popup-taula-flag">
+                              <img src="img/flags/esp.png">  
+                            </div>
+                            <div class="popup-taula-flag">
+                              <img src="img/flags/nosub.png">  
+                            </div>
+                            <div class="progress" id="popup-qualitat">
+                              <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
+                                <span class="sr-only">DVD-Rip</span>
+                              </div>
+                            </div>
+                            <div class="popup-taula-report">
+                              <img src="img/altres/reportar.png">
+                            </div>
+                      </tr>
+                    </table> 
                   </div>
+                  
                   <div class="modal-footer">
                     <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
                   </div>
                 </div>
-                -->
+                
               </div>
               <div class="taula-capitols-dret">
                 <div class="taula-capitols-imatge" >
@@ -519,7 +737,7 @@
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="js/jquery.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="js/concatenat.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 
 	</body>
 </html>
