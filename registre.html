@@ -7,6 +7,9 @@
     
 <!-- Bootstrap css & Custom -->
     <link href="css/concatenat.css" rel="stylesheet" media="screen">
+    
+    <!-- FIREBASE Framework-->
+    <script type='text/javascript' src='https://cdn.firebase.com/js/client/1.0.6/firebase.js'></script>
 
 <!-- Icones social media buttons -->
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
@@ -20,21 +23,37 @@
       <form class="form-signin" id="form-login">
         <h2 class="form-signin-heading">REGISTER</h2>
         <h4>Please enter the required data to create a new account</h4><br>
-        <input type="text" class="form-control" placeholder="First name" autofocus>		
-        <br>
-        <input type="text" class="form-control" placeholder="Last name" autofocus>
-        <br>
-        <input type="text" class="form-control" placeholder="Nickname" autofocus>
-        <br>
-        <input type="email" class="form-control" placeholder="Email address" autofocus>
-        <br>
-        <input type="password" class="form-control" placeholder="Password">
-        <br>
-        <input type="password" class="form-control" placeholder="Repeat password">
+        <input type="text" id="nickname" class="form-control" placeholder="Nickname" autofocus><br>
+        <input type="email" id="email" class="form-control" placeholder="Email address" autofocus><br>
+        <input type="password" id="password" class="form-control" placeholder="Password"><br>
+        <input type="password" id="password-repeat" class="form-control" placeholder="Repeat password">
         <h6 id="warning-allfields"><i>(All fields are required)</i></h6>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">REGISTER</button>
+        <button onclick="user_register()" class="btn btn-lg btn-primary btn-block" type="submit">REGISTER</button>
       </form>
-
+      
+      
+      <script>
+        /* Crear els usuaris */
+        
+        //Agafar els valors dels inputs del formulari
+        
+        
+        //URL on es guardarà la info
+        var nameRef = new Firebase('https://pelisvo.firebaseio.com/users');
+        
+        //Mètode que registra al user quan es clica al botó enviar
+        function user_register(){
+        var nickname = document.getElementById('nickname').innerHTML;       
+        var email = document.getElementById('email').value;
+        var password = document.getElementById('password').value;
+          // Aquest alert és una xuleta per veure si les variables tenen el valor correcte
+          alert("Nickname: "+nickname+" Email: "+email+" Password: "+password+" FI");
+          nameRef.push({'nickname': nickname, 'email': email, 'password': password});
+        }
+      
+      </script>
+      
+      
     </div>
 
 
