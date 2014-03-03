@@ -35,20 +35,30 @@
       <script>
         /* Crear els usuaris */
         
-        //Agafar els valors dels inputs del formulari
-        
-        
         //URL on es guardarà la info
-        var nameRef = new Firebase('https://pelisvo.firebaseio.com/users');
+        var nameRef = new Firebase('https://pelisvo.firebaseio.com/');
         
         //Mètode que registra al user quan es clica al botó enviar
         function user_register(){
-        var nickname = document.getElementById('nickname').innerHTML;       
-        var email = document.getElementById('email').value;
-        var password = document.getElementById('password').value;
+          
+          authClient.createUser($("#email").val(), $("#password").val(), function(error, user) {
+            if (!error) {
+                alert('User Id: ' + user.id + ', Email: ' + user.email);
+            } else {
+                alert("S'ha fet be");
+            }
+        });
+        
+          /*
+          //Agafar els valors dels inputs del formulari
+          var nickname = document.getElementById('nickname').value;       
+          var email = document.getElementById('email').value;
+          var password = document.getElementById('password').value;
+          
           // Aquest alert és una xuleta per veure si les variables tenen el valor correcte
-          alert("Nickname: "+nickname+" Email: "+email+" Password: "+password+" FI");
+          alert("Nickname: "+nickname+" Email: "+email+" Password: "+password);
           nameRef.push({'nickname': nickname, 'email': email, 'password': password});
+          */
         }
       
       </script>
