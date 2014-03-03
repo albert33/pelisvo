@@ -21,38 +21,47 @@
     <form class="form-signin" id="form-login">
       <h2 class="form-signin-heading">SIGN IN</h2>
         <h4>Please enter your credentials in order to enter the website</h4><br>
-        <input type="text" id ="userid" class="form-control" placeholder="Nickname or Email address" autofocus><br>
+        <input type="text" id ="nickname" class="form-control" placeholder="Nickname or Email address" autofocus><br>
         <input type="password" id="password" class="form-control" placeholder="Password">
         <label class="checkbox">
           <input type="checkbox" id="remember" value="remember-me"> Remember me
         </label>
         <br>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">SIGN IN</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="dologin()">SIGN IN</button>
     </form>
     
     <script>
 
       // instatiate the FirebaseSimpleLogin and monitor the user's auth state
       var chatRef = new Firebase('https://pelisvo.firebaseio.com');
-      var auth = new FirebaseSimpleLogin(chatRef, function(error, user) {
-        if (error) {
-          // an error occurred while attempting login
-          alert(error);
-        } else if (user) {
-          // user authenticated with Firebase
-          alert('User ID: ' + user.id + ', Provider: ' + user.provider);
-          //authClient.login("password", {
-          //  email: $("#email").val(),
-          //  password: $("#password").val(),
-          //  rememberMe: $("#rememberCheckbox").val()
-          //});
-        } else {
-          // user is logged out
-        }
+      
+      var authClient = new FirebaseAuthClient(chatRef, function(error, user) {
+            if (error) {
+                // an error occurred while attempting login
+                console.log(error);
+            } else if (user) {
+                // user authenticated with Firebase
+                console.log('User ID: ' + user.id + ', Provider: ' + user.provider);
+            } else {
+                // user is logged out
+                console.log('Not logged in')
+            }
       });
-
-      // attempt to log the user in with your preferred authentication provider
-      auth.login('<provider>');
+      
+      /*function dologin(){
+            authClient.login('password', {
+                nickname: $("#nickname").val(),
+                password: $("#password").val()
+            });
+      };
+      */
+      
+      function dologin(){
+            authClient.login('password', {
+                email: 'user@hotmail.com',
+                password: 'user'
+            });
+      };
 
 
     </script>
