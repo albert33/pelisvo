@@ -157,3 +157,51 @@ function recollirBuscadorAnys() {
         });
 	
 }
+
+function vistaLlistaSeries() {
+	
+	var seriesRef = new Firebase('https://pelisvo.firebaseio.com/series/s1/');
+        seriesRef.on('value', function(snapshot) {
+          if(snapshot.val() === null) {
+            alert('La taula series no existeix.');
+          } else {
+            
+            // Localitzem el el div dins del qual s'haurà de crear la llista
+            var div = document.getElementById('caixa-resultats-series');
+            
+            var llista = document.createElement("ul");
+            llista.className = "llista-resultats-item";
+            div.appendChild(llista);
+				
+				// Quines series hi han
+				snapshot.forEach(function(childSnapshot) {
+				
+					var serie = childSnapshot.name();
+					
+					var atributsSerieRef = new Firebase('https://pelisvo.firebaseio.com/series/'+serie);
+					atributsSerieRef.on('value', function(snapshot) {
+		         	if(snapshot.val() === null) {
+		         		alert('La serie no existeix.');
+		         	} else {
+		         		
+		         		// Atributs de cada serie
+		         		snapshot.forEach(function(childSnapshot) {
+		         			var nom = snapshot.val().name.;
+		         			alert("Any: "+nom);
+		         			
+		         			
+		         			
+		         			
+		         		});
+		         		
+						}
+        			});
+					
+					
+				});  
+			
+            
+          }
+        });
+	
+}
