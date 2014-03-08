@@ -1,4 +1,4 @@
-module.exports = function(grunt) {
+﻿module.exports = function(grunt) {
 
     // 1. All configuration goes here 
     grunt.initConfig({
@@ -7,27 +7,27 @@ module.exports = function(grunt) {
         concat: {  // CONCATENAR JS I CSS
 				    js: {
 				        src: [
-				            'js/*.js', // All JS in the js folder
+				            'js/src/bootstrap.js', 'js/src/custom.js'
 				        ],
-				        dest: 'js/concatenat.js',
+				        dest: 'js/dest/concatenat.js',
 				    },
 				    css: {
 				        src: [
-				            'css/*.css', // All CSS in the css folder
+				            'css/src/bootstrap.css', 'bootstrap-responsive.css', 'social-buttons.css', 'css/src/customcss.css'
 				        ],
-				        dest: 'css/concatenat.css',
+				        dest: 'css/dest/concatenat.css',
 				    }
         },
         uglify: {  // MINIFICAR JS
 			    js: {
-			        src: 'js/concatenat.js',
-			        dest: 'js/concatenat.min.js'
+			        src: 'js/dest/concatenat.js',
+			        dest: 'js/dest/concatenat.min.js'
 			    }
 			},
 			cssmin: {  // MINIFICAR CSS
             css: {
-                src: 'css/concatenat.css',
-                dest: 'css/concatenat.min.css'
+                src: 'css/dest/concatenat.css',
+                dest: 'css/dest/concatenat.min.css'
             }
          },
 			imagemin: {
@@ -42,7 +42,7 @@ module.exports = function(grunt) {
 			},
 			watch: {
 			    scripts: {
-			        files: ['js/*.js', 'css/*.css'],
+			        files: ['js/src/*.js', 'css/src/*.css'],
 			        tasks: ['concat', 'uglify', 'cssmin'],
 			        options: {
 			            spawn: false,
