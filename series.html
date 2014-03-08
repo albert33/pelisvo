@@ -1,12 +1,15 @@
-<!DOCTYPE html>
+ï»¿<!DOCTYPE html>
 <html>
 <head>
+  <meta charset="utf-8">
     <title>SERIES</title>
-    
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
 <!-- Bootstrap css & Custom -->
-    <link href="css/concatenat.css" rel="stylesheet" media="screen">
+    <link href="dest/css/concatenat.min.css" rel="stylesheet" media="screen">
+
+
 
 <!-- Icones social media buttons -->
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
@@ -18,7 +21,7 @@
         padding-bottom: 40px;
       }
     </style>
-  
+
   </head>
 	<body class="body-home">
 
@@ -31,7 +34,7 @@
 						<span class="icon-bar"></span>
 					</button>
 					<a class="brand" href="#" id="navbar-full">BRAND LOGO</a>
-					
+
             <div class="nav-collapse collapse" id="navbar-full">
               <ul class="nav">
                   <li><a href="home.html" id="navbar-full">HOME</a></li>
@@ -57,73 +60,48 @@
 				</div>
 			</div>
 		</div><!-- FI NAVBAR -->
-		
+
 		<div class="series-contenidor-buscadors"><!-- INICI CONTENIDOR BUSCADORS-->
-		
-		  <div class="caixa-buscadors"><!-- inici buscador rapid -->
+
+		  <div id="buscador_rapid" class="caixa-buscadors"><!-- inici buscador rapid -->
 		    <div class="caixa-buscadors-header">
-		      Buscador ràpid
+		      Buscador rÃ pid
 		    </div>
-          <!-- List group -->
-          <ul class="llista-items">
-            <li class="caixa-item">Més vistes</li>
-            <li class="caixa-item">Millor puntuació</li>
-            <li class="caixa-item">Últimes afegides</li>
-            <li class="caixa-item">Ordre alfabètic</li>
-          </ul>
+        <!-- List group (es crea amb javascript) -->
+
 		  </div><!-- fi buscador rapid -->
-		  
-		  <div class="caixa-buscadors"><!-- inici buscador genere -->
+
+		  <div id="buscador_genere" class="caixa-buscadors"><!-- inici buscador genere -->
 		    <div class="caixa-buscadors-header">
-		      Gènere
+		      GÃ¨nere
 		    </div>
-          <!-- List group -->
-          <ul class="llista-items">
-            <li class="caixa-item">Acció</li>
-            <li class="caixa-item">Aventura</li>
-            <li class="caixa-item">Comèdia</li>
-            <li class="caixa-item">Crim</li>
-            <li class="caixa-item">Drama</li>
-            <li class="caixa-item">Intriga</li>
-          </ul> 
+        <!-- List group (es crea amb javascript) -->
+
 		  </div><!-- fi buscador genere -->
-		  
-		  <div class="caixa-buscadors"><!-- inici buscador idioma -->
+
+		  <div id="buscador_idiomes" class="caixa-buscadors"><!-- inici buscador idioma -->
 		    <div class="caixa-buscadors-header">
 		      Idioma
 		    </div>
-          <!-- List group -->
-          <ul class="llista-items">
-            <li class="caixa-item">Anglès</li>
-            <li class="caixa-item">Català</li>
-            <li class="caixa-item">Espanyol</li>
-            <li class="caixa-item">Francès</li>
-            <li class="caixa-item">Italià</li>
-          </ul> 
+        <!-- List group (es crea amb javascript) -->
+
 		  </div><!-- fi buscador idioma -->
-		  
-		  <div class="caixa-buscadors"><!-- inici buscador any -->
+
+		  <div id="buscador_decada" class="caixa-buscadors"><!-- inici buscador any -->
 		    <div class="caixa-buscadors-header">
 		      Any
 		    </div>
-          <!-- List group -->
-          <ul class="llista-items">
-            <li class="caixa-item">60s</li>
-            <li class="caixa-item">70s</li>
-            <li class="caixa-item">80s</li>
-            <li class="caixa-item">90s</li>
-            <li class="caixa-item">00s</li>
-            <li class="caixa-item">10s</li>
-          </ul> 
+        <!-- List group (es crea amb javascript) -->
+
 		  </div><!-- fi buscador any -->
-		  
+
 		</div><!-- FI CONTENIDOR BUSCADORS -->
-		
+
 		<a id="topseries" style="color:white;"></a>
 		<div class="series-contenidor"><!-- INICI CONTENIDOR SERIES-->
-		  
-		  <div class="caixa-resultats-series"><!-- inici caixa resultats series -->
-		    
+
+		  <div id="caixa-resultats-series" class="caixa-resultats-series"><!-- inici caixa resultats series -->
+
 		    <div class="caixa-buscadors-header"><!-- inici header caixa -->
 		      SERIES
 		      <div class="caixa-pagination">
@@ -143,9 +121,15 @@
             </div>
           </div>
 		    </div><!-- fi header caixa -->
-		    
+
+		    <!-- Llista de series (es crea amb javascript)
+        <script type="text/javascript">
+          vistaLlistaSeries();
+        </script>
+		    -->
+
 		    <ul class="llista-resultats-item"><!-- inici contingut resultats -->
-          
+
           <li class="caixa-serie-item"><!-- inici item -->
             <div class="llista-resultats-caratula">
               <a class="pull-left" href="serieInfo.html">
@@ -157,18 +141,18 @@
                 Agentes de SHIELD
               </a>
               <div class="llista-info-basica">
-                2013 &nbsp;&nbsp;|&nbsp;&nbsp; 7.2 &nbsp;&nbsp;|&nbsp;&nbsp; Acció, Drama, Ciència Ficció
+                2013 &nbsp;&nbsp;|&nbsp;&nbsp; 7.2 &nbsp;&nbsp;|&nbsp;&nbsp; AcciÃ³, Drama, CiÃ¨ncia FicciÃ³
               </div>
               <div class="llista-sinopsis">
                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis sagittis lectus. In hac habitasse platea dictumst. Mauris velit sem, convallis ut commodo vitae, consectetur at ligula. Proin imperdiet ac tellus ut lacinia. Aenean adipiscing ante a eros ultricies dignissim. Aliquam tortor ipsum, feugiat dapibus iaculis quis, sodales in augue. Vestibulum luctus placerat tempus.
-                  Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam accumsan justo in quam sagittis, ac pretium eros hendrerit. Vivamus quis augue non diam condimentum venenatis. Duis odio turpis, hendrerit vitae augue vitae, fermentum ornare libero. Aliquam tincidunt eros quis arcu malesuada, non pulvinar nulla porttitor. Aenean aliquet auctor nisl. Nunc mattis, felis ut tristique consequat, justo quam vulputate ante, et consectetur nulla arcu ut elit. Aliquam congue consequat libero, vel facilisis lorem bibendum vel. Aenean et tellus ut purus euismod lacinia sit amet ultrices nulla. Donec lorem augue, fermentum vel lorem et, mollis mollis tortor. Nam vulputate eget eros vitae blandit. Vestibulum tristique lacus eu odio imperdiet, nec accumsan nunc ornare.  
+                  Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam accumsan justo in quam sagittis, ac pretium eros hendrerit. Vivamus quis augue non diam condimentum venenatis. Duis odio turpis, hendrerit vitae augue vitae, fermentum ornare libero. Aliquam tincidunt eros quis arcu malesuada, non pulvinar nulla porttitor. Aenean aliquet auctor nisl. Nunc mattis, felis ut tristique consequat, justo quam vulputate ante, et consectetur nulla arcu ut elit. Aliquam congue consequat libero, vel facilisis lorem bibendum vel. Aenean et tellus ut purus euismod lacinia sit amet ultrices nulla. Donec lorem augue, fermentum vel lorem et, mollis mollis tortor. Nam vulputate eget eros vitae blandit. Vestibulum tristique lacus eu odio imperdiet, nec accumsan nunc ornare.
               </div>
               <div class="llista-info-extra">
                 Temporades: 1 &nbsp;&nbsp;|&nbsp;&nbsp; Espisodis: 12 &nbsp;&nbsp;|&nbsp;&nbsp; Durada: 45 min.
               </div>
             </div>
           </li><!-- fi item -->
-          
+
           <li class="caixa-serie-item"><!-- inici item -->
             <div class="llista-resultats-caratula">
               <a class="pull-left" href="#">
@@ -190,7 +174,7 @@
               </div>
             </div>
           </li><!-- fi item -->
-          
+
           <li class="caixa-serie-item"><!-- inici item -->
             <div class="llista-resultats-caratula">
               <a class="pull-left" href="#">
@@ -202,17 +186,17 @@
                 Castle
               </a>
               <div class="llista-info-basica">
-                2009 &nbsp;&nbsp;|&nbsp;&nbsp; 8.4 &nbsp;&nbsp;|&nbsp;&nbsp; Comèdia, Crim, Drama
+                2009 &nbsp;&nbsp;|&nbsp;&nbsp; 8.4 &nbsp;&nbsp;|&nbsp;&nbsp; ComÃ¨dia, Crim, Drama
               </div>
               <div class="llista-sinopsis">
-                 After a serial killer imitates the plots of his novels, successful mystery novelist Richard "Rick" Castle gets permission from the Mayor of New York City to tag along with an NYPD homicide investigation team for research purposes. 
+                 After a serial killer imitates the plots of his novels, successful mystery novelist Richard "Rick" Castle gets permission from the Mayor of New York City to tag along with an NYPD homicide investigation team for research purposes.
               </div>
               <div class="llista-info-extra">
                 Temporades: 6 &nbsp;&nbsp;|&nbsp;&nbsp; Espisodis: 243 &nbsp;&nbsp;|&nbsp;&nbsp; Durada: 43 min.
               </div>
             </div>
           </li><!-- fi item -->
-          
+
           <li class="caixa-serie-item"><!-- inici item -->
             <div class="llista-resultats-caratula">
               <a class="pull-left" href="#">
@@ -234,7 +218,7 @@
               </div>
             </div>
           </li><!-- fi item -->
-          
+
           <li class="caixa-serie-item"><!-- inici item -->
             <div class="llista-resultats-caratula">
               <a class="pull-left" href="#">
@@ -256,7 +240,7 @@
               </div>
             </div>
           </li><!-- fi item -->
-          
+
           <li class="caixa-serie-item"><!-- inici item -->
             <div class="llista-resultats-caratula">
               <a class="pull-left" href="#">
@@ -268,17 +252,17 @@
                 Padre de Familia
               </a>
               <div class="llista-info-basica">
-                1999 &nbsp;&nbsp;|&nbsp;&nbsp; 8.5 &nbsp;&nbsp;|&nbsp;&nbsp; Animació, Comèdia
+                1999 &nbsp;&nbsp;|&nbsp;&nbsp; 8.5 &nbsp;&nbsp;|&nbsp;&nbsp; AnimaciÃ³, ComÃ¨dia
               </div>
               <div class="llista-sinopsis">
-                 In a wacky Rhode Island town, a dysfunctional family strive to cope with everyday life as they are thrown from one crazy scenario to another. 
+                 In a wacky Rhode Island town, a dysfunctional family strive to cope with everyday life as they are thrown from one crazy scenario to another.
               </div>
               <div class="llista-info-extra">
                 Temporades: 12 &nbsp;&nbsp;|&nbsp;&nbsp; Espisodis: 232 &nbsp;&nbsp;|&nbsp;&nbsp; Durada: 22 min.
               </div>
             </div>
           </li><!-- fi item -->
-          
+
           <li class="caixa-serie-item"><!-- inici item -->
             <div class="llista-resultats-caratula">
               <a class="pull-left" href="#">
@@ -290,7 +274,7 @@
                 Prison Break
               </a>
               <div class="llista-info-basica">
-                2005 &nbsp;&nbsp;|&nbsp;&nbsp; 8.6 &nbsp;&nbsp;|&nbsp;&nbsp; Acció, Crim, Drama
+                2005 &nbsp;&nbsp;|&nbsp;&nbsp; 8.6 &nbsp;&nbsp;|&nbsp;&nbsp; AcciÃ³, Crim, Drama
               </div>
               <div class="llista-sinopsis">
                  Due to a political conspiracy an innocent man is sent to death row and his only hope is his brother who makes it his mission to deliberately get himself sent to the same prison in order to break the both of them out from the inside out.
@@ -300,7 +284,7 @@
               </div>
             </div>
           </li><!-- fi item -->
-          
+
           <li class="caixa-serie-item"><!-- inici item -->
             <div class="llista-resultats-caratula">
               <a class="pull-left" href="#">
@@ -312,7 +296,7 @@
                 Roma
               </a>
               <div class="llista-info-basica">
-                2005 &nbsp;&nbsp;|&nbsp;&nbsp; 8.6 &nbsp;&nbsp;|&nbsp;&nbsp; Acció, Drama, Història
+                2005 &nbsp;&nbsp;|&nbsp;&nbsp; 8.6 &nbsp;&nbsp;|&nbsp;&nbsp; AcciÃ³, Drama, HistÃ²ria
               </div>
               <div class="llista-sinopsis">
                  A down-to-earth account of the lives of both illustrious and ordinary Romans set in the last days of the Roman Republic
@@ -322,7 +306,7 @@
               </div>
             </div>
           </li><!-- fi item -->
-          
+
           <li class="caixa-serie-item"><!-- inici item -->
             <div class="llista-resultats-caratula">
               <a class="pull-left" href="#">
@@ -334,17 +318,17 @@
                 Vikings
               </a>
               <div class="llista-info-basica">
-                2013 &nbsp;&nbsp;|&nbsp;&nbsp; 8.5 &nbsp;&nbsp;|&nbsp;&nbsp; Acció, Drama, Història
+                2013 &nbsp;&nbsp;|&nbsp;&nbsp; 8.5 &nbsp;&nbsp;|&nbsp;&nbsp; AcciÃ³, Drama, HistÃ²ria
               </div>
               <div class="llista-sinopsis">
-                 Vikings follows the adventures of Ragnar Lothbrok: the greatest hero of his age. The series tells the saga of Ragnar's band of Viking brothers and his family as he rises to become King of the Viking tribes. As well as being a fearless warrior, Ragnar embodies the Norse traditions of devotion to the gods: legend has it that he was a direct descendant of Odin, the god of war and warriors. 
+                 Vikings follows the adventures of Ragnar Lothbrok: the greatest hero of his age. The series tells the saga of Ragnar's band of Viking brothers and his family as he rises to become King of the Viking tribes. As well as being a fearless warrior, Ragnar embodies the Norse traditions of devotion to the gods: legend has it that he was a direct descendant of Odin, the god of war and warriors.
               </div>
               <div class="llista-info-extra">
                 Temporades: 2 &nbsp;&nbsp;|&nbsp;&nbsp; Espisodis: 32 &nbsp;&nbsp;|&nbsp;&nbsp; Durada: 60 min.
               </div>
             </div>
           </li><!-- fi item -->
-          
+
           <li class="caixa-serie-item"><!-- inici item -->
             <div class="llista-resultats-caratula">
               <a class="pull-left" href="#">
@@ -359,17 +343,17 @@
                 2010 &nbsp;&nbsp;|&nbsp;&nbsp; 8.8 &nbsp;&nbsp;|&nbsp;&nbsp; Drama, Horror, Thriller
               </div>
               <div class="llista-sinopsis">
-                 Police officer Rick Grimes leads a group of survivors in a world overrun by zombies. 
+                 Police officer Rick Grimes leads a group of survivors in a world overrun by zombies.
               </div>
               <div class="llista-info-extra">
                 Temporades: 4 &nbsp;&nbsp;|&nbsp;&nbsp; Espisodis: 235 &nbsp;&nbsp;|&nbsp;&nbsp; Durada: 45 min.
               </div>
             </div>
           </li><!-- fi item -->
-          
+
         </ul><!-- fi contingut resultats -->
 
-		    
+
 		    <div class="caixa-resultats-footer"><!-- inici footer caixa-->
 		      <a href="#topseries" class="caixa-backtotop">Back to top &uarr;</a>
 		      <div class="caixa-pagination">
@@ -389,24 +373,24 @@
             </div>
           </div>
 		    </div><!-- fi footer caixa -->
-		    
+
 		  </div><!-- fi caixa resultats series-->
-		  
-		  
+
+
 		</div><!-- FI CONTENIDOR SERIES -->
-		
-		
-		
+
+
+
 	  <div class="panel-footer" id="footer"> <!-- INICI DEL FOOTER-->
       <div id="contenidor-footer-esquerra"><!-- INICI DIV FOOTER ESQUERRA -->
         <h4 align="center">FOLLOW US ON:</h4>
         <p align="center">
         <button class="btn btn-facebook"><i class="fa fa-facebook"></i> | Facebook</button>
         <button class="btn btn-twitter"><i class="fa fa-twitter"></i>   | Twitter</button>
-        <button class="btn btn-youtube"><i class="fa fa-youtube"></i>   | Youtube</button>   
-        </p>     
+        <button class="btn btn-youtube"><i class="fa fa-youtube"></i>   | Youtube</button>
+        </p>
       </div><!-- FI DIV FOOTER ESQUERRA -->
-      
+
       <div id="contenidor-footer-dret"><!-- INICI DIV FOOTER DRETA -->
         <p align="center">Series i Pelis VO &copy; 2014  &nbsp;&nbsp;|&nbsp;&nbsp;  Legal advice &nbsp;&nbsp;|&nbsp;&nbsp;  Contact</p>
       </div><!-- FI DIV FOOTER DRETA -->
@@ -416,8 +400,9 @@
 	<!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
+    <script src='https://cdn.firebase.com/js/client/1.0.6/firebase.js'></script>
     <script src="https://code.jquery.com/jquery.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="dest/js/concatenat.js"></script>
 
 	</body>
 </html>
