@@ -1,53 +1,48 @@
 ﻿module.exports = function(grunt) {
 
-    // 1. All configuration goes here 
+    // 1. All configuration goes here
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
 
         concat: {  // CONCATENAR JS I CSS
 				    js: {
 				        src: [
-				            'js/src/bootstrap.js', 'js/src/custom.js'
+				            'src/js/bootstrap.js',
+				            'src/js/custom.js'
 				        ],
-				        dest: 'js/dest/concatenat.js',
+				        dest: 'dest/js/concatenat.js',
 				    },
 				    css: {
 				        src: [
-				            'css/src/bootstrap.css', 'bootstrap-responsive.css', 'social-buttons.css', 'css/src/customcss.css'
+				            'src/css/bootstrap.css',
+				            'src/css/bootstrap-responsive.css',
+				            'src/css/social-buttons.css',
+				            'src/css/custom.css'
 				        ],
-				        dest: 'css/dest/concatenat.css',
+				        dest: 'dest/css/concatenat.css',
 				    }
         },
         uglify: {  // MINIFICAR JS
 			    js: {
-			        src: 'js/dest/concatenat.js',
-			        dest: 'js/dest/concatenat.min.js'
+			        src: 	'dest/js/concatenat.js',
+			        dest: 	'dest/js/concatenat.min.js'
 			    }
 			},
 			cssmin: {  // MINIFICAR CSS
             css: {
-                src: 'css/dest/concatenat.css',
-                dest: 'css/dest/concatenat.min.css'
+                src: 	'dest/css/concatenat.css',
+                dest: 	'dest/css/concatenat.min.css'
             }
          },
-			imagemin: {
-			    dynamic: {
-			        files: [{
-			            expand: true,
-			            cwd: 'img/',
-			            src: ['**/*.{png,jpg,gif}'],
-			            dest: 'img/'
-			        }]
-			    }
-			},
+
 			watch: {
 			    scripts: {
-			        files: ['js/src/*.js', 'css/src/*.css'],
+			        files: ['src/**/*.js', 'src/css/**/*.css'],
 			        tasks: ['concat', 'uglify', 'cssmin'],
 			        options: {
 			            spawn: false,
 			        }
-			    } 
+			    }
 			}
     });
 
@@ -59,6 +54,6 @@
     grunt.loadNpmTasks('grunt-contrib-cssmin');
 
     // 4. Where we tell Grunt what to do when we type "grunt" into the terminal.
-    grunt.registerTask('default', ['concat', 'uglify', 'cssmin', 'imagemin', 'watch']);
+    grunt.registerTask('default', ['concat', 'uglify', 'cssmin', 'watch']);
 
 };
