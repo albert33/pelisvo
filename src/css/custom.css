@@ -113,7 +113,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* PANELL INFORMACIO */
 
-.capçalera-panell {
+.capï¿½alera-panell {
    border-bottom: 1px solid;
    margin-top: 20px;
 }
@@ -151,7 +151,7 @@ h1, h2, h3, h4, h5, h6 {
    color: #666666;
 }
 
-.box-enllaç-extern {
+.box-enllaï¿½-extern {
    width: 300px;
    height: 45px;
    background: none repeat scroll 0% 0% rgb(247, 247, 247);
@@ -159,7 +159,7 @@ h1, h2, h3, h4, h5, h6 {
    margin-right: 10px;
 }
 
-.nom-enllaç-box {
+.nom-enllaï¿½-box {
    overflow: hidden;
    text-overflow: ellipsis;
    text-align: center;
@@ -172,7 +172,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* PANELL CAPITOLS */
 
-.capçalera-gran {
+.capï¿½alera-gran {
    width: auto;
    height: 20px;
    border-bottom: 1px solid rgb(41, 128, 185);
@@ -679,6 +679,7 @@ background-image: linear-gradient(to bottom, rgb(232, 232, 225) 0%, rgb(245, 245
 
 .caratula-llista {
    width: 120px;
+   max-width: 120px;
    height: 180px;
 }
 
@@ -786,7 +787,7 @@ background-image: linear-gradient(to bottom, rgb(232, 232, 225) 0%, rgb(245, 245
    margin-top: 20px;
 }
 
-.div-encapçalament-serie {
+.div-encapï¿½alament-serie {
    width: auto;
    clear: both;
    display: block;
