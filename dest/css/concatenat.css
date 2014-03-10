@@ -8657,6 +8657,7 @@ background-image: linear-gradient(to bottom, rgb(232, 232, 225) 0%, rgb(245, 245
 
 .caratula-llista {
    width: 120px;
+   max-width: 120px;
    height: 180px;
 }
 
