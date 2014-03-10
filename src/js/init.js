@@ -1,16 +1,15 @@
 ﻿$( document ).ready(function() {
+	//searchBoxListener ();
 	
-	// Iniciar els buscadors
 	var buscadors = [
-		{fbURL: "generes", divID: "buscador_genere"},
-		{fbURL: "buscador_rapid", divID: "buscador_rapid"},
-		{fbURL: "idiomes", divID: "buscador_idiomes"},
-		{fbURL: "buscador_decada", divID: "buscador_decada"}
+		{ url: "buscador_rapid", domID: "buscador_rapid" },
+		{ url: "generes", domID: "buscador_genere" },
+		{ url: "idiomes", domID: "buscador_idiomes" },
+		{ url: "buscador_decada", domID: "buscador_decada" }
 	];
 	
 	for (var i=0; i<buscadors.length; i++){
-		generarBuscadors(baseRef + buscadors[i].fbURL , buscadors[i].divID);
+		crearBuscadors(fbRef + buscadors[i].url, buscadors[i].domID);
 	}
-	
 	
 });
