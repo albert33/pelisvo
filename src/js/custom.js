@@ -28,37 +28,50 @@ function crearBuscadors(fbURL, divID) {
 
 function vistaLlistaSeries() {
 
-	var seriesRef = new Firebase('https://pelisvo.firebaseio.com/series/s1/');
+	var seriesRef = new Firebase('https://pelisvo.firebaseio.com/series/');
    seriesRef.on('value', function(snapshot) {
    	if(snapshot.val() === null) {
-      	alert('La taula series no existeix.');
+      	console.log('La taula series no existeix.');
       } else {
-
+			
       	var div = document.getElementById('caixa-resultats-series');
-
          var llista = document.createElement("ul");
          llista.className = "llista-resultats-item";
          div.appendChild(llista);
+         
+         // Var conté id's de les series
+         var idSeries = [];
 
-			// Quines series hi han
 			snapshot.forEach(function(childSnapshot) {
-				var serie = childSnapshot.name();
-
-				var atributsSerieRef = new Firebase('https://pelisvo.firebaseio.com/series/'+serie);
-				atributsSerieRef.on('value', function(snapshot) {
-	         	if(snapshot.val() === null) {
-	         		alert('La serie no existeix.');
-	         	} else {
-
-	         		// Atributs de cada serie
-	         		snapshot.forEach(function(childSnapshot) {
-	         			var nom = snapshot.name();
-	         			var valor = snapshot.val();
-	         			alert(nom+" : "+valor);
-	         		});
-					}
-        		});
+				var idSerie = childSnapshot.name();
+				idSeries.push(idSerie);
 			});
+			
+			for (var i=0; i<idSeries.length; i++){
+				// To do: crear un <li> per a cada serie
+				
+				var serieRef = new Firebase('https://pelisvo.firebaseio.com/series/'+idSeries[i]);
+				var atributs = {};
+				serieRef.on('value', function(snapshot) {
+			   	if(snapshot.val() === null) {
+			      	console.log('La taula series no existeix.');
+			      } else {
+			      
+			      	snapshot.forEach(function(childSnapshot) {
+							var atribut = childSnapshot.name();
+							var valor = childSnapshot.val();
+							
+							console.log(atribut+" : "+valor);
+							//atributs.push(atribut,valor);
+						});
+			      
+			      }
+   			});
+					
+			}
+			
+			
+			
       }
    });
 
