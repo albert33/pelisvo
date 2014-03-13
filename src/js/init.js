@@ -12,6 +12,6 @@
 		crearBuscadors(fbRef + buscadors[i].url, buscadors[i].domID);
 	}
 	
-	vistaLlistaSeries();
+	vistaLlistaSeries(fbRef+"series");
 	
 });

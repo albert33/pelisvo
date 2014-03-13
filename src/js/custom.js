@@ -26,15 +26,15 @@ function crearBuscadors(fbURL, divID) {
    });
 }
 
-function vistaLlistaSeries() {
+function vistaLlistaSeries(fbURL) {
 
-	var seriesRef = new Firebase('https://pelisvo.firebaseio.com/series/');
+	var seriesRef = new Firebase(fbURL);
    seriesRef.on('value', function(snapshot) {
    	if(snapshot.val() === null) {
       	console.log('La taula series no existeix.');
       } else {
 			
-      	var div = document.getElementById('caixa-resultats-series');
+      	var div = document.getElementById('mostrar-series');
          var llista = document.createElement("ul");
          llista.className = "llista-resultats-item";
          div.appendChild(llista);
