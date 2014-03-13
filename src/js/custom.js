@@ -43,8 +43,7 @@ function vistaLlistaSeries() {
 
 			snapshot.forEach(function(childSnapshot) {
 				var idSerie = childSnapshot.name();
-				var objSerie = childSnapshot.val(); 
-				//console.log(idSerie+" : "+objSerie.any_estrena);
+				var objSerie = childSnapshot.val();
 				
 				// Cada serie és un <li>
 				var serie = document.createElement("li");
@@ -69,13 +68,42 @@ function vistaLlistaSeries() {
 							aCaratula.appendChild(imgCaratula);
 					
 					// Div gran informació
-				
+					var divGranInfo = document.createElement("div");
+					divGranInfo.className = "llista-contenidor-item";
+					serie.appendChild(divGranInfo);
+					
+						// Títol <a>
+						var aTitol = document.createElement("a");
+						aTitol.className = "llista-titol";
+						aTitol.href = "";
+							var titol_es = document.createTextNode(objSerie.titol_es);
+							aTitol.appendChild(titol_es);
+						divGranInfo.appendChild(aTitol);
+						
+						// Div info basica segona linia
+						var divInfoBasica = document.createElement("div");
+						divInfoBasica.className = "llista-info-basica";
+							// No esta acabat. Falten els espais en blanc <&nbsp;>
+							var segonaLinia = document.createTextNode(objSerie.any_estrena+" | "+objSerie.puntuacio_global+" | "+objSerie.generes);
+							divInfoBasica.appendChild(segonaLinia);
+						divGranInfo.appendChild(divInfoBasica);
+						
+						//Div sinopsis
+						var divSinopsis = document.createElement("div");
+						divSinopsis.className = "llista-sinopsis";
+							var textSinopsis = document.createTextNode(objSerie.sinopsis);
+							divSinopsis.appendChild(textSinopsis);
+						divGranInfo.appendChild(divSinopsis);
+						
+						//Div info extra ultima linia
+						var divInfoExtra = document.createElement("div");
+						divInfoExtra.className = "llista-info-extra";
+							var ultimaLinia = document.createTextNode("Temporades: "+objSerie.temporades+" | Capítols totals: "+objSerie.capitols_totals+" | Durada: "+objSerie.durada_episodis+" min.");
+							divInfoExtra.appendChild(ultimaLinia);
+						divGranInfo.appendChild(divInfoExtra);
+						
 			});
-			
-			
-			
-			
-			
+				
       }
    });
 
