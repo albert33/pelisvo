@@ -2306,52 +2306,84 @@ function crearBuscadors(fbURL, divID) {
    });
 }
 
-function vistaLlistaSeries() {
+function vistaLlistaSeries(fbURL) {
 
-	var seriesRef = new Firebase('https://pelisvo.firebaseio.com/series/');
+	var seriesRef = new Firebase(fbURL);
    seriesRef.on('value', function(snapshot) {
    	if(snapshot.val() === null) {
       	console.log('La taula series no existeix.');
       } else {
 			
-      	var div = document.getElementById('caixa-resultats-series');
+      	var div = document.getElementById('mostrar-series');
          var llista = document.createElement("ul");
          llista.className = "llista-resultats-item";
          div.appendChild(llista);
          
-         // Var conté id's de les series
-         var idSeries = [];
+        
 
 			snapshot.forEach(function(childSnapshot) {
 				var idSerie = childSnapshot.name();
-				idSeries.push(idSerie);
-			});
-			
-			for (var i=0; i<idSeries.length; i++){
-				// To do: crear un <li> per a cada serie
+				var objSerie = childSnapshot.val();
 				
-				var serieRef = new Firebase('https://pelisvo.firebaseio.com/series/'+idSeries[i]);
-				var atributs = {};
-				serieRef.on('value', function(snapshot) {
-			   	if(snapshot.val() === null) {
-			      	console.log('La taula series no existeix.');
-			      } else {
-			      
-			      	snapshot.forEach(function(childSnapshot) {
-							var atribut = childSnapshot.name();
-							var valor = childSnapshot.val();
-							
-							console.log(atribut+" : "+valor);
-							//atributs.push(atribut,valor);
-						});
-			      
-			      }
-   			});
+				// Cada serie és un <li>
+				var serie = document.createElement("li");
+				serie.className = "caixa-serie-item";
+				llista.appendChild(serie);
+				
+					// Div de la caratula
+					var divCaratula = document.createElement("div");
+					divCaratula.className = "llista-resultats-caratula";
+					serie.appendChild(divCaratula);
 					
-			}
-			
-			
-			
+						// Caratula enllaç <a>
+						var aCaratula = document.createElement("a");
+						aCaratula.className = "pull-left";
+						aCaratula.href = "";
+						divCaratula.appendChild(aCaratula);
+						
+							// Imatge caratula <img>
+							var imgCaratula = document.createElement("img");
+							imgCaratula.className = "caratula-llista";
+							imgCaratula.src = objSerie.caratula;
+							aCaratula.appendChild(imgCaratula);
+					
+					// Div gran informació
+					var divGranInfo = document.createElement("div");
+					divGranInfo.className = "llista-contenidor-item";
+					serie.appendChild(divGranInfo);
+					
+						// Títol <a>
+						var aTitol = document.createElement("a");
+						aTitol.className = "llista-titol";
+						aTitol.href = "";
+							var titol_es = document.createTextNode(objSerie.titol_es);
+							aTitol.appendChild(titol_es);
+						divGranInfo.appendChild(aTitol);
+						
+						// Div info basica segona linia
+						var divInfoBasica = document.createElement("div");
+						divInfoBasica.className = "llista-info-basica";
+							// No esta acabat. Falten els espais en blanc <&nbsp;>
+							var segonaLinia = document.createTextNode(objSerie.any_estrena+" | "+objSerie.puntuacio_global+" | "+objSerie.generes);
+							divInfoBasica.appendChild(segonaLinia);
+						divGranInfo.appendChild(divInfoBasica);
+						
+						//Div sinopsis
+						var divSinopsis = document.createElement("div");
+						divSinopsis.className = "llista-sinopsis";
+							var textSinopsis = document.createTextNode(objSerie.sinopsis);
+							divSinopsis.appendChild(textSinopsis);
+						divGranInfo.appendChild(divSinopsis);
+						
+						//Div info extra ultima linia
+						var divInfoExtra = document.createElement("div");
+						divInfoExtra.className = "llista-info-extra";
+							var ultimaLinia = document.createTextNode("Temporades: "+objSerie.temporades+" | Capítols totals: "+objSerie.capitols_totals+" | Durada: "+objSerie.durada_episodis+" min.");
+							divInfoExtra.appendChild(ultimaLinia);
+						divGranInfo.appendChild(divInfoExtra);
+						
+			});
+				
       }
    });
 
@@ -2391,6 +2423,6 @@ $( document ).ready(function() {
 		crearBuscadors(fbRef + buscadors[i].url, buscadors[i].domID);
 	}
 	
-	vistaLlistaSeries();
+	vistaLlistaSeries(fbRef+"series");
 	
 });
