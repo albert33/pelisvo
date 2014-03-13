@@ -39,36 +39,40 @@ function vistaLlistaSeries() {
          llista.className = "llista-resultats-item";
          div.appendChild(llista);
          
-         // Var conté id's de les series
-         var idSeries = [];
+        
 
 			snapshot.forEach(function(childSnapshot) {
 				var idSerie = childSnapshot.name();
-				idSeries.push(idSerie);
+				var objSerie = childSnapshot.val(); 
+				//console.log(idSerie+" : "+objSerie.any_estrena);
+				
+				// Cada serie és un <li>
+				var serie = document.createElement("li");
+				serie.className = "caixa-serie-item";
+				llista.appendChild(serie);
+				
+					// Div de la caratula
+					var divCaratula = document.createElement("div");
+					divCaratula.className = "llista-resultats-caratula";
+					serie.appendChild(divCaratula);
+					
+						// Caratula enllaç <a>
+						var aCaratula = document.createElement("a");
+						aCaratula.className = "pull-left";
+						aCaratula.href = "";
+						divCaratula.appendChild(aCaratula);
+						
+							// Imatge caratula <img>
+							var imgCaratula = document.createElement("img");
+							imgCaratula.className = "caratula-llista";
+							imgCaratula.src = objSerie.caratula;
+							aCaratula.appendChild(imgCaratula);
+					
+					// Div gran informació
+				
 			});
 			
-			for (var i=0; i<idSeries.length; i++){
-				// To do: crear un <li> per a cada serie
-				
-				var serieRef = new Firebase('https://pelisvo.firebaseio.com/series/'+idSeries[i]);
-				var atributs = {};
-				serieRef.on('value', function(snapshot) {
-			   	if(snapshot.val() === null) {
-			      	console.log('La taula series no existeix.');
-			      } else {
-			      
-			      	snapshot.forEach(function(childSnapshot) {
-							var atribut = childSnapshot.name();
-							var valor = childSnapshot.val();
-							
-							console.log(atribut+" : "+valor);
-							//atributs.push(atribut,valor);
-						});
-			      
-			      }
-   			});
-					
-			}
+			
 			
 			
 			
