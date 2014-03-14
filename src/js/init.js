@@ -1,5 +1,6 @@
 ﻿$( document ).ready(function() {
-	//searchBoxListener ();
+	
+	searchBoxListener ();
 	
 	var buscadors = [
 		{ url: "buscador_rapid", domID: "buscador_rapid" },

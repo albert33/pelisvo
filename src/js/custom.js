@@ -33,9 +33,7 @@ function crearBuscadors(fbURL, divID) {
 				checkbox.value = llista[i];
 				
 				var label = document.createElement('label');
-				label.style.display = "inline-block";
-				// No aconsegueixo aplicar l'atribut margin-left
-				//label.style.margin.left = "15px";
+				label.className = "labelItem";
 				label.appendChild(document.createTextNode(llista[i]));
 				
          	var listItem = document.createElement("li");
