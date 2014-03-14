@@ -1,5 +1,15 @@
 ﻿var fbRef = "https://pelisvo.firebaseio.com/";
 
+function uncheckAll(nameCheckboxes) {
+
+	var cbarray = document.getElementsByName(nameCheckboxes);
+   
+   for(var i = 0; i < cbarray.length; i++){
+		cbarray[i].checked = false;
+	}   
+  
+}
+
 function crearBuscadors(fbURL, divID) {
 	var buscadorRef = new Firebase(fbURL);
    buscadorRef.on('value', function(snapshot) {
@@ -16,9 +26,24 @@ function crearBuscadors(fbURL, divID) {
          var numberOfListItems = llista.length;
 
          for( var i =  0 ; i < numberOfListItems ; i++){
+         	
+				var checkbox = document.createElement("input");
+				checkbox.type = "checkbox";
+				checkbox.name = "cb";
+				checkbox.value = llista[i];
+				
+				var label = document.createElement('label');
+				label.style.display = "inline-block";
+				// No aconsegueixo aplicar l'atribut margin-left
+				//label.style.margin.left = "15px";
+				label.appendChild(document.createTextNode(llista[i]));
+				
          	var listItem = document.createElement("li");
            	listItem.className = "caixa-item";
-           	listItem.innerHTML = llista[i];
+           	
+           	listItem.appendChild(checkbox);
+           	listItem.appendChild(label);
+         
 				listElement.appendChild(listItem);
          }
 
