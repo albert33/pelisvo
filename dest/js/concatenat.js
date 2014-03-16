@@ -2280,9 +2280,30 @@
 }(window.jQuery);
 var fbRef = "https://pelisvo.firebaseio.com/";
 
-function uncheckAll(nameCheckboxes) {
 
-	var cbarray = document.getElementsByName(nameCheckboxes);
+function filtrarChecked() {
+	
+	var cbarray = document.getElementsByTagName("input"); 
+	var valors = [];
+	var buscador = [];
+	
+	for(var i = 0; i < cbarray.length; i++){
+		if (cbarray[i].checked){
+			valors.push(cbarray[i].value);
+			buscador.push(cbarray[i].name);
+		} 
+	}
+	
+	for (var i = 0; i<valors.length; i++){
+		console.log(buscador[i]+" : "+valors[i]);
+	}
+	
+}
+
+
+function uncheckAll() {
+
+	var cbarray = document.getElementsByTagName("input");
    
    for(var i = 0; i < cbarray.length; i++){
 		cbarray[i].checked = false;
@@ -2309,7 +2330,7 @@ function crearBuscadors(fbURL, divID) {
          	
 				var checkbox = document.createElement("input");
 				checkbox.type = "checkbox";
-				checkbox.name = "cb";
+				checkbox.name = divID;
 				checkbox.value = llista[i];
 				
 				var label = document.createElement('label');
