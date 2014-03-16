@@ -2298,6 +2298,15 @@ function filtrarChecked() {
 		console.log(buscador[i]+" : "+valors[i]);
 	}
 	
+	/*
+	
+	Cridar a la funció vistaLlistaSeries,
+	passant-li els filtres com a paràmetres
+	per a que torni a carregar les series,
+	però que només carreguin les que ha filtrat l'usuari
+	
+	*/
+	
 }
 
 
