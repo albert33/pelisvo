@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Sign in</title>
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+  <!-- Bootstrap css & Custom -->
+  <link href="dest/css/concatenat.min.css" rel="stylesheet" media="screen">
+
+  <!-- Icones social media buttons -->
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+    
+</head>
+<body class="body-login">
+
+  <div class="container" id="container-login">
+    <form class="form-signin" id="form-login">
+      <h2 class="form-signin-heading">SIGN IN</h2>
+        <h4>Please enter your credentials in order to enter the website</h4><br>
+        <input type="text" id ="nickname" class="form-control" placeholder="Nickname or Email address" autofocus><br>
+        <input type="password" id="password" class="form-control" placeholder="Password">
+        <label class="checkbox">
+          <input type="checkbox" id="remember" value="remember-me"> Remember me
+        </label>
+        <br>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="dologin()">SIGN IN</button>
+    </form>
+    
+    <script>
+
+      // instatiate the FirebaseSimpleLogin and monitor the user's auth state
+      var chatRef = new Firebase('https://pelisvo.firebaseio.com');
+      
+      var authClient = new FirebaseAuthClient(chatRef, function(error, user) {
+            if (error) {
+                // an error occurred while attempting login
+                console.log(error);
+            } else if (user) {
+                // user authenticated with Firebase
+                console.log('User ID: ' + user.id + ', Provider: ' + user.provider);
+            } else {
+                // user is logged out
+                console.log('Not logged in')
+            }
+      });
+      
+      /*function dologin(){
+            authClient.login('password', {
+                nickname: $("#nickname").val(),
+                password: $("#password").val()
+            });
+      };
+      */
+      
+      function dologin(){
+            authClient.login('password', {
+                email: 'user@hotmail.com',
+                password: 'user'
+            });
+      };
+
+
+    </script>
+    
+
+  </div>
+
+
+
+
+    <div class="panel-footer" id="footer"> <!-- INICI DEL FOOTER-->
+      <div id="contenidor-footer-esquerra"><!-- INICI DIV FOOTER ESQUERRA -->
+        <h4 align="center">FOLLOW US ON:</h4>
+        <p align="center">
+        <button class="btn btn-facebook"><i class="fa fa-facebook"></i> | Facebook</button>
+        <button class="btn btn-twitter"><i class="fa fa-twitter"></i>   | Twitter</button>
+        <button class="btn btn-youtube"><i class="fa fa-youtube"></i>   | Youtube</button>   
+        </p>     
+      </div><!-- FI DIV FOOTER ESQUERRA -->
+      
+      <div id="contenidor-footer-dret"><!-- INICI DIV FOOTER DRETA -->
+        <p align="center">Series i Pelis VO &copy; 2014  &nbsp;&nbsp;|&nbsp;&nbsp;  Legal advice &nbsp;&nbsp;|&nbsp;&nbsp;  Contact</p>
+      </div><!-- FI DIV FOOTER DRETA -->
+    </div><!-- FI DEL FOOTER -->
+
+
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src='https://cdn.firebase.com/js/client/1.0.6/firebase.js'></script>
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="dest/js/concatenat.js"></script>
+    
+</body>
+</html>

@@ -8091,7 +8091,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* PANELL INFORMACIO */
 
-.cap�alera-panell {
+.capçalera-panell {
    border-bottom: 1px solid;
    margin-top: 20px;
 }
@@ -8129,7 +8129,7 @@ h1, h2, h3, h4, h5, h6 {
    color: #666666;
 }
 
-.box-enlla�-extern {
+.box-enllaç-extern {
    width: 300px;
    height: 45px;
    background: none repeat scroll 0% 0% rgb(247, 247, 247);
@@ -8137,7 +8137,7 @@ h1, h2, h3, h4, h5, h6 {
    margin-right: 10px;
 }
 
-.nom-enlla�-box {
+.nom-enllaç-box {
    overflow: hidden;
    text-overflow: ellipsis;
    text-align: center;
@@ -8150,7 +8150,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* PANELL CAPITOLS */
 
-.cap�alera-gran {
+.capçalera-gran {
    width: auto;
    height: 20px;
    border-bottom: 1px solid rgb(41, 128, 185);
@@ -8608,6 +8608,12 @@ background-image: linear-gradient(to bottom, rgb(232, 232, 225) 0%, rgb(245, 245
    float: right;
 }
 
+.labelItem {
+   display: inline-block;
+   margin-left: 15px;
+   cursor: default;
+}
+
 .caixa-header-numero-series {
    border-right: 1px solid;
    float: left;
@@ -8657,6 +8663,7 @@ background-image: linear-gradient(to bottom, rgb(232, 232, 225) 0%, rgb(245, 245
 
 .caratula-llista {
    width: 120px;
+   max-width: 120px;
    height: 180px;
 }
 
@@ -8764,7 +8771,7 @@ background-image: linear-gradient(to bottom, rgb(232, 232, 225) 0%, rgb(245, 245
    margin-top: 20px;
 }
 
-.div-encap�alament-serie {
+.div-encapçalament-serie {
    width: auto;
    clear: both;
    display: block;
@@ -8820,7 +8827,21 @@ background-image: linear-gradient(to bottom, rgb(232, 232, 225) 0%, rgb(245, 245
    margin-bottom: 20px;
 }
 
+/* BUSCADOR NAVBAR */
 
+.containerBuscador {
+   position: absolute;
+   background: none repeat scroll 0% 0% #FFF;
+   top: 30px;
+   left: 0px;
+   z-index: 101;
+   width: 269px;
+   border: 1px solid #777;
+}
+
+.itemContainerBuscador {
+   
+}
 
 /* FOOTER DIVS */
 

@@ -2278,29 +2278,56 @@
 
 
 }(window.jQuery);
-var fbBaseURL = "https://pelisvo.firebaseio.com/",
-	fireBaseRef = new Firebase(fbBaseURL);
+var fbRef = "https://pelisvo.firebaseio.com/";
 
 
-// TODO:
-function creaBuscador(firebaseChildPath, targetID) {
-	// childRef = fireBaseRef.child(firebaseChildPath)
-	// itera sobre la info i afegeix al DOM
-
-	// Potser no cal. es podria separar en dues funcions, de connexió i de DOM
+function filtrarChecked() {
+	
+	var cbarray = document.getElementsByTagName("input"); 
+	var valors = [];
+	var buscador = [];
+	
+	for(var i = 0; i < cbarray.length; i++){
+		if (cbarray[i].checked){
+			valors.push(cbarray[i].value);
+			buscador.push(cbarray[i].name);
+		} 
+	}
+	
+	for (var i = 0; i<valors.length; i++){
+		console.log(buscador[i]+" : "+valors[i]);
+	}
+	
+	/*
+	
+	Cridar a la funció vistaLlistaSeries,
+	passant-li els filtres com a paràmetres
+	per a que torni a carregar les series,
+	però que només carreguin les que ha filtrat l'usuari
+	
+	*/
+	
 }
 
 
-function recollirBuscadorGeneres() {
+function uncheckAll() {
 
-	var generesRef = new Firebase('https://pelisvo.firebaseio.com/generes/');
-   generesRef.on('value', function(snapshot) {
+	var cbarray = document.getElementsByTagName("input");
+   
+   for(var i = 0; i < cbarray.length; i++){
+		cbarray[i].checked = false;
+	}   
+  
+}
+
+function crearBuscadors(fbURL, divID) {
+	var buscadorRef = new Firebase(fbURL);
+   buscadorRef.on('value', function(snapshot) {
    	if(snapshot.val() === null) {
-      	alert('La taula generes no existeix.');
+      	console.log('La referencia no existeix.');
       } else {
-
       	var llista = snapshot.val();
-         var div = document.getElementById('buscador_genere');
+         var div = document.getElementById(divID);
 
          var listElement = document.createElement("ul");
          listElement.className = "llista-items";
@@ -2309,137 +2336,107 @@ function recollirBuscadorGeneres() {
          var numberOfListItems = llista.length;
 
          for( var i =  0 ; i < numberOfListItems ; i++){
+         	
+				var checkbox = document.createElement("input");
+				checkbox.type = "checkbox";
+				checkbox.name = divID;
+				checkbox.value = llista[i];
+				
+				var label = document.createElement('label');
+				label.className = "labelItem";
+				label.appendChild(document.createTextNode(llista[i]));
+				
          	var listItem = document.createElement("li");
            	listItem.className = "caixa-item";
-           	listItem.innerHTML = llista[i];
+           	
+           	listItem.appendChild(checkbox);
+           	listItem.appendChild(label);
+         
 				listElement.appendChild(listItem);
          }
 
       }
    });
-
 }
 
-function recollirBuscadorRapid() {
+function vistaLlistaSeries(fbURL) {
 
-	var generesRef = new Firebase('https://pelisvo.firebaseio.com/buscador_rapid/');
-   generesRef.on('value', function(snapshot) {
-   	if(snapshot.val() === null) {
-      	alert('La taula buscador_rapid no existeix.');
-      } else {
-
-      	var llista = snapshot.val();
-         var div = document.getElementById('buscador_rapid');
-
-         var listElement = document.createElement("ul");
-         listElement.className = "llista-items";
-         div.appendChild(listElement);
-
-         var numberOfListItems = llista.length;
-
-         for( var i =  0 ; i < numberOfListItems ; i++){
-         	var listItem = document.createElement("li");
-           	listItem.className = "caixa-item";
-           	listItem.innerHTML = llista[i];
-				listElement.appendChild(listItem);
-         }
-
-      }
-   });
-
-}
-
-function recollirBuscadorIdiomes() {
-
-	var generesRef = new Firebase('https://pelisvo.firebaseio.com/idiomes/');
-   generesRef.on('value', function(snapshot) {
-   	if(snapshot.val() === null) {
-      	alert('La taula idiomes no existeix.');
-      } else {
-
-      	var llista = snapshot.val();
-         var div = document.getElementById('buscador_idiomes');
-
-         var listElement = document.createElement("ul");
-         listElement.className = "llista-items";
-         div.appendChild(listElement);
-
-         var numberOfListItems = llista.length;
-
-         for( var i =  0 ; i < numberOfListItems ; i++){
-         	var listItem = document.createElement("li");
-           	listItem.className = "caixa-item";
-           	listItem.innerHTML = llista[i];
-				listElement.appendChild(listItem);
-         }
-
-      }
-   });
-
-}
-
-function recollirBuscadorAnys() {
-
-	var generesRef = new Firebase('https://pelisvo.firebaseio.com/buscador_decada/');
-   generesRef.on('value', function(snapshot) {
-   	if(snapshot.val() === null) {
-      	alert('La taula buscador_decada no existeix.');
-      } else {
-
-      	var llista = snapshot.val();
-         var div = document.getElementById('buscador_decada');
-
-         var listElement = document.createElement("ul");
-         listElement.className = "llista-items";
-         div.appendChild(listElement);
-
-         var numberOfListItems = llista.length;
-
-         for( var i =  0 ; i < numberOfListItems ; i++){
-         	var listItem = document.createElement("li");
-           	listItem.className = "caixa-item";
-           	listItem.innerHTML = llista[i];
-				listElement.appendChild(listItem);
-         }
-
-      }
-   });
-
-}
-
-function vistaLlistaSeries() {
-
-	var seriesRef = new Firebase('https://pelisvo.firebaseio.com/series/s1/');
+	var seriesRef = new Firebase(fbURL);
    seriesRef.on('value', function(snapshot) {
    	if(snapshot.val() === null) {
-      	alert('La taula series no existeix.');
+      	console.log('La taula series no existeix.');
       } else {
-
-      	var div = document.getElementById('caixa-resultats-series');
-
+			
+      	var div = document.getElementById('mostrar-series');
          var llista = document.createElement("ul");
          llista.className = "llista-resultats-item";
          div.appendChild(llista);
+         
+        
 
-			// Quines series hi han
 			snapshot.forEach(function(childSnapshot) {
-				var serie = childSnapshot.name();
-
-				var atributsSerieRef = new Firebase('https://pelisvo.firebaseio.com/series/'+serie);
-				atributsSerieRef.on('value', function(snapshot) {
-	         	if(snapshot.val() === null) {
-	         		alert('La serie no existeix.');
-	         	} else {
-
-	         		// Atributs de cada serie
-	         		snapshot.forEach(function(childSnapshot) {
-	         			var nom = snapshot.name();
-	         			var valor = snapshot.val();
-	         			alert(nom+" : "+valor);
-	         		});
-					}
-        		});
+				var idSerie = childSnapshot.name();
+				var objSerie = childSnapshot.val();
+				
+				// Cada serie és un <li>
+				var serie = document.createElement("li");
+				serie.className = "caixa-serie-item";
+				llista.appendChild(serie);
+				
+					// Div de la caratula
+					var divCaratula = document.createElement("div");
+					divCaratula.className = "llista-resultats-caratula";
+					serie.appendChild(divCaratula);
+					
+						// Caratula enllaç <a>
+						var aCaratula = document.createElement("a");
+						aCaratula.className = "pull-left";
+						aCaratula.href = "";
+						divCaratula.appendChild(aCaratula);
+						
+							// Imatge caratula <img>
+							var imgCaratula = document.createElement("img");
+							imgCaratula.className = "caratula-llista";
+							imgCaratula.src = objSerie.caratula;
+							aCaratula.appendChild(imgCaratula);
+					
+					// Div gran informació
+					var divGranInfo = document.createElement("div");
+					divGranInfo.className = "llista-contenidor-item";
+					serie.appendChild(divGranInfo);
+					
+						// Títol <a>
+						var aTitol = document.createElement("a");
+						aTitol.className = "llista-titol";
+						aTitol.href = "";
+							var titol_es = document.createTextNode(objSerie.titol_es);
+							aTitol.appendChild(titol_es);
+						divGranInfo.appendChild(aTitol);
+						
+						// Div info basica segona linia
+						var divInfoBasica = document.createElement("div");
+						divInfoBasica.className = "llista-info-basica";
+							// No esta acabat. Falten els espais en blanc <&nbsp;>
+							var segonaLinia = document.createTextNode(objSerie.any_estrena+" | "+objSerie.puntuacio_global+" | "+objSerie.generes);
+							divInfoBasica.appendChild(segonaLinia);
+						divGranInfo.appendChild(divInfoBasica);
+						
+						//Div sinopsis
+						var divSinopsis = document.createElement("div");
+						divSinopsis.className = "llista-sinopsis";
+							var textSinopsis = document.createTextNode(objSerie.sinopsis);
+							divSinopsis.appendChild(textSinopsis);
+						divGranInfo.appendChild(divSinopsis);
+						
+						//Div info extra ultima linia
+						var divInfoExtra = document.createElement("div");
+						divInfoExtra.className = "llista-info-extra";
+							var ultimaLinia = document.createTextNode("Temporades: "+objSerie.temporades+" | Capítols totals: "+objSerie.capitols_totals+" | Durada: "+objSerie.durada_episodis+" min.");
+							divInfoExtra.appendChild(ultimaLinia);
+						divGranInfo.appendChild(divInfoExtra);
+						
 			});
+				
       }
    });
 
@@ -2463,18 +2460,21 @@ function gestionaCampDeCerca (evt) {
 		}
 
 }
-
 $( document ).ready(function() {
-	recollirBuscadorGeneres();
-	recollirBuscadorRapid();
-	recollirBuscadorIdiomes();
-	recollirBuscadorAnys();
+	
 	searchBoxListener ();
+	
 	var buscadors = [
-		{ url: "buscador_decada", domID: "decada" },
-		{ url: "buscador_generes", domID: "busc_generes" },
-		{ url: "buscador_pepito", domID: "pepitodom" }
+		{ url: "buscador_rapid", domID: "buscador_rapid" },
+		{ url: "generes", domID: "buscador_genere" },
+		{ url: "idiomes", domID: "buscador_idiomes" },
+		{ url: "buscador_decada", domID: "buscador_decada" }
 	];
-	// iterar sobre array i cridar la funcio
-	//creaBuscador(fbBaseURL + buscadors[i].url, buscadors[i].domID);
+	
+	for (var i=0; i<buscadors.length; i++){
+		crearBuscadors(fbRef + buscadors[i].url, buscadors[i].domID);
+	}
+	
+	vistaLlistaSeries(fbRef+"series");
+	
 });

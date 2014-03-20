@@ -8,7 +8,8 @@
 				    js: {
 				        src: [
 				            'src/js/bootstrap.js',
-				            'src/js/custom.js'
+				            'src/js/custom.js',
+				            'src/js/init.js'
 				        ],
 				        dest: 'dest/js/concatenat.js',
 				    },
