@@ -7,8 +7,14 @@ function filtrarChecked() {
 	var valors = [];
 	var buscador = [];
 	
-	for(var i = 0; i < cbarray.length; i++){
-		if (cbarray[i].checked){
+	// TODO: aconseguir una estructura així dels checkboxes
+	var filtres = {
+  	"buscador_genere": ["Història", "Altres"]
+	};
+	
+	for (var i = 0; i < cbarray.length; i++) {
+
+		if (cbarray[i].checked) {
 			valors.push(cbarray[i].value);
 			buscador.push(cbarray[i].name);
 		} 
@@ -16,8 +22,10 @@ function filtrarChecked() {
 	
 	for (var i = 0; i<valors.length; i++){
 		console.log(buscador[i]+" : "+valors[i]);
+		
 	}
 	
+	cercaPerGenere(filtres.buscador_genere);
 	/*
 	
 	Cridar a la funció vistaLlistaSeries,
@@ -27,6 +35,37 @@ function filtrarChecked() {
 	
 	*/
 	
+}
+
+function cercaPerGenere(generesFiltre) {
+    console.log("Cerca per genères: ", generesFiltre);
+    var matching = {};
+    var serie, generesSerie;
+    var seriesRef = new Firebase(fbRef).child("series");
+    seriesRef.on('value', function(snapshot) {
+      if(snapshot.val() !== null) {
+        snapshot.forEach(function(csnap) {
+          console.log(csnap.name(), csnap.val());
+          serie = csnap.val();
+          generesSerie = serie.generes.split(",");
+          $.each(generesSerie, function(i) { generesSerie[i] = generesSerie[i].trim(); });
+          $.each(generesFiltre, function(index, item) {
+            if (generesSerie.indexOf(item) != -1 &&
+               !matching.hasOwnProperty(csnap.name())) {
+                console.log("Matching! Serie " + serie.titol_es + " genere " + item);
+              matching[csnap.name()] = serie;
+            }
+          });
+          
+      	});
+      }
+    });
+    console.log(matching);
+    // ja les tens, ara has de tornar a actualitzar la vista
+    // per això és important separar les consultes al back-end de la manipulació del DOM
+    // ara podries aprofitar gran part de vistaLlistaSeries si ho treus en una funció externa
+    
+    // no serà fàcil ajuntar tots els filtres de diversos conceptes (any, idioma).
 }
 
 
