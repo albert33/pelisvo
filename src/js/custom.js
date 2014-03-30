@@ -1,7 +1,7 @@
 ﻿/*
 
 TO DO:
-1- Canviar estructura checkboxes (estructura + agafar be els valors)
+1- Canviar estructura checkboxes (estructura + agafar be els valors) --> FET
 2- Fer que funcioni filtrar per decada, idioma, etc.
 3- Ajuntar tots els filtres
 4- Externalitzar la funció per crear el llistat de series
@@ -20,27 +20,32 @@ function filtrarChecked() {
    	div.removeChild(div.lastChild);
 	}
 	
-	
 	// Agafar valors
-	var cbarray = document.getElementsByTagName("input"); 
-	var valors = [];
-	var buscador = [];
-	
-	// TODO: aconseguir una estructura així dels checkboxes
+	var cbarray = document.getElementsByTagName("input");
 	var filtres = {
-  	"buscador_genere": ["Història", "Crim"]
+	"buscador_rapid": [],
+	"buscador_genere": [],
+	"buscador_idiomes": [],
+	"buscador_decada": []
 	};
-	
-	for (var i = 0; i < cbarray.length; i++) {
 
-		if (cbarray[i].checked) {
-			valors.push(cbarray[i].value);
-			buscador.push(cbarray[i].name);
-		} 
+	
+	for (var i = 1; i < cbarray.length; i++) {
+		if (cbarray[i].name == "buscador_rapid" && cbarray[i].checked) {
+			filtres.buscador_rapid.push(cbarray[i].value);
+		} else if (cbarray[i].name == "buscador_genere" && cbarray[i].checked) {
+			filtres.buscador_genere.push(cbarray[i].value);
+		} else if (cbarray[i].name == "buscador_idiomes" && cbarray[i].checked) {
+			filtres.buscador_idiomes.push(cbarray[i].value);
+		} else if (cbarray[i].name == "buscador_decada" && cbarray[i].checked) {
+			filtres.buscador_decada.push(cbarray[i].value);
+		}
 	}
 	
+	console.log(filtres);
+	
 	//Filtrar per genere
-	cercaPerGenere(filtres.buscador_genere);
+	//cercaPerGenere(filtres.buscador_genere);
 
 	
 }
