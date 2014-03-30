@@ -2,9 +2,12 @@
 
 TO DO:
 1- Canviar estructura checkboxes (estructura + agafar be els valors) --> FET
-2- Fer que funcioni filtrar per decada, idioma, etc.
-3- Ajuntar tots els filtres
-4- Externalitzar la funció per crear el llistat de series
+2- Fer que funcioni filtrar per genere --> FET
+3- Fer que funcioni filtrar per idioma
+4- Fer que funcioni filtrar per buscador rapid (ordre alfabetic i per puntuació)
+5- Fer que funcioni filtrar per decada
+6- Ajuntar tots els filtres
+7- Externalitzar la funció per crear el llistat de series
 
 */
 
@@ -45,7 +48,7 @@ function filtrarChecked() {
 	console.log(filtres);
 	
 	//Filtrar per genere
-	//cercaPerGenere(filtres.buscador_genere);
+	cercaPerGenere(filtres.buscador_genere);
 
 	
 }
@@ -74,12 +77,7 @@ function cercaPerGenere(generesFiltre) {
       }
     });
     console.log(matching);
-   filtratPerGeneres(matching);
-    // ja les tens, ara has de tornar a actualitzar la vista
-    // per això és important separar les consultes al back-end de la manipulació del DOM
-    // ara podries aprofitar gran part de vistaLlistaSeries si ho treus en una funció externa
-    
-    // no serà fàcil ajuntar tots els filtres de diversos conceptes (any, idioma).
+    filtratPerGeneres(matching);
 }
 
 
@@ -175,6 +173,7 @@ function crearBuscadors(fbURL, divID) {
       	console.log('La referencia no existeix.');
       } else {
       	var llista = snapshot.val();
+      	llista.sort();
          var div = document.getElementById(divID);
 
          var listElement = document.createElement("ul");
