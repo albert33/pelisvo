@@ -2285,7 +2285,7 @@ TO DO:
 2- Fer que funcioni filtrar per genere --> FET
 3- Fer que funcioni filtrar per idioma --> FET
 4- Fer que funcioni filtrar per buscador rapid (ordre alfabetic i per puntuació)
-5- Fer que funcioni filtrar per decada
+5- Fer que funcioni filtrar per decada --> FET
 6- Ajuntar tots els filtres
 7- Externalitzar la funció per crear el llistat de series
 
@@ -2331,7 +2331,44 @@ function filtrarChecked() {
 	cercaPerGenere(filtres.buscador_genere);
 	// Filtrar per idiomes
 	cercaPerIdioma(filtres.buscador_idiomes);
+	// Filtrar per decada
+	cercaPerDecada(filtres.buscador_decada);
 
+	
+}
+
+function cercaPerDecada(decadaFiltre) {
+	console.log("Cerca per decada: "+decadaFiltre);
+	var matching = {};
+    var serie, decadaSerie;
+    var seriesRef = new Firebase(fbRef).child("series");
+    seriesRef.on('value', function(snapshot) {
+      if(snapshot.val() !== null) {
+        snapshot.forEach(function(csnap) {
+          console.log(csnap.name(), csnap.val());
+          serie = csnap.val();
+          decadaSerie = serie.any_estrena;
+          if ( (decadaFiltre.indexOf("60s") != -1) && (decadaSerie>=1960 && decadaSerie<=1969) ){
+          	console.log("seixanta");
+          	matching[csnap.name()] = serie;
+          } else if ( (decadaFiltre.indexOf("70s") != -1) && (decadaSerie>=1970 && decadaSerie<=1979) ){
+          	console.log("setanta");
+          	matching[csnap.name()] = serie;
+          } else if ( (decadaFiltre.indexOf("80s") != -1) && (decadaSerie>=1980 && decadaSerie<=1989) ){
+          	console.log("vuitanta");
+          	matching[csnap.name()] = serie;
+          } else if ( (decadaFiltre.indexOf("90s") != -1) && (decadaSerie>=1990 && decadaSerie<=1999) ){
+          	console.log("noranta");
+          	matching[csnap.name()] = serie;
+          } else if ( (decadaFiltre.indexOf("Actual (>2000)") != -1) && decadaSerie>=2000){
+          	console.log("actual");
+          	matching[csnap.name()] = serie;
+          }
+      	});
+      }
+    });
+    console.log(matching);
+    filtratPerGeneres(matching);
 	
 }
 
