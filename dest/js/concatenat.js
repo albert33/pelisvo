@@ -2283,7 +2283,7 @@
 TO DO:
 1- Canviar estructura checkboxes (estructura + agafar be els valors) --> FET
 2- Fer que funcioni filtrar per genere --> FET
-3- Fer que funcioni filtrar per idioma
+3- Fer que funcioni filtrar per idioma --> FET
 4- Fer que funcioni filtrar per buscador rapid (ordre alfabetic i per puntuació)
 5- Fer que funcioni filtrar per decada
 6- Ajuntar tots els filtres
@@ -2327,8 +2327,10 @@ function filtrarChecked() {
 	
 	console.log(filtres);
 	
-	//Filtrar per genere
+	// Filtrar per genere
 	cercaPerGenere(filtres.buscador_genere);
+	// Filtrar per idiomes
+	cercaPerIdioma(filtres.buscador_idiomes);
 
 	
 }
@@ -2358,6 +2360,35 @@ function cercaPerGenere(generesFiltre) {
     });
     console.log(matching);
     filtratPerGeneres(matching);
+}
+
+function cercaPerIdioma(idiomaFiltre) {
+	console.log("Cerca per idioma: "+idiomaFiltre);
+	var matching = {};
+    var serie, idiomaSerie;
+    var seriesRef = new Firebase(fbRef).child("series");
+    seriesRef.on('value', function(snapshot) {
+      if(snapshot.val() !== null) {
+        snapshot.forEach(function(csnap) {
+          console.log(csnap.name(), csnap.val());
+          serie = csnap.val();
+          idiomaSerie = serie.idioma.split(",");
+          $.each(idiomaSerie, function(i) { idiomaSerie[i] = idiomaSerie[i].trim(); });
+          $.each(idiomaFiltre, function(index, item) {
+            if (idiomaSerie.indexOf(item) != -1 &&
+               !matching.hasOwnProperty(csnap.name())) {
+                console.log("Matching! Serie " + serie.titol_es + " genere " + item);
+              	matching[csnap.name()] = serie;
+            }
+          });
+          
+      	});
+      }
+    });
+    console.log(matching);
+    filtratPerGeneres(matching);
+	
+	
 }
 
 
