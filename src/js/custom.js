@@ -164,6 +164,8 @@ function uncheckAll() {
    for(var i = 0; i < cbarray.length; i++){
 		cbarray[i].checked = false;
 	}   
+	
+	vistaLlistaSeries(recollirTotesSeries());
 }
 
 function crearBuscadors(fbURL, divID) {
