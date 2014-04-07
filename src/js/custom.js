@@ -7,13 +7,30 @@ TO DO:
 4- Fer que funcioni filtrar per buscador rapid (ordre alfabetic i per puntuació)
 5- Fer que funcioni filtrar per decada --> FET
 6- Ajuntar tots els filtres
-7- Externalitzar la funció per crear el llistat de series
+7- Externalitzar la funció per crear el llistat de series --> FET
 
 */
 
 
 var fbRef = "https://pelisvo.firebaseio.com/";
 
+function recollirTotesSeries(){
+
+	var matching = {};
+   var serie;
+   var seriesRef = new Firebase(fbRef).child("series");
+   seriesRef.on('value', function(snapshot) {
+     if(snapshot.val() !== null) {
+       snapshot.forEach(function(csnap) {
+         serie = csnap.val();
+         matching[csnap.name()] = serie;
+         
+     	});
+     }
+   });
+   
+	return matching;
+}
 
 function filtrarChecked() {
 	
@@ -65,30 +82,25 @@ function cercaPerDecada(decadaFiltre) {
     seriesRef.on('value', function(snapshot) {
       if(snapshot.val() !== null) {
         snapshot.forEach(function(csnap) {
-          console.log(csnap.name(), csnap.val());
+          //console.log(csnap.name(), csnap.val());
           serie = csnap.val();
           decadaSerie = serie.any_estrena;
           if ( (decadaFiltre.indexOf("60s") != -1) && (decadaSerie>=1960 && decadaSerie<=1969) ){
-          	console.log("seixanta");
           	matching[csnap.name()] = serie;
           } else if ( (decadaFiltre.indexOf("70s") != -1) && (decadaSerie>=1970 && decadaSerie<=1979) ){
-          	console.log("setanta");
           	matching[csnap.name()] = serie;
           } else if ( (decadaFiltre.indexOf("80s") != -1) && (decadaSerie>=1980 && decadaSerie<=1989) ){
-          	console.log("vuitanta");
           	matching[csnap.name()] = serie;
           } else if ( (decadaFiltre.indexOf("90s") != -1) && (decadaSerie>=1990 && decadaSerie<=1999) ){
-          	console.log("noranta");
           	matching[csnap.name()] = serie;
           } else if ( (decadaFiltre.indexOf("Actual (>2000)") != -1) && decadaSerie>=2000){
-          	console.log("actual");
           	matching[csnap.name()] = serie;
           }
       	});
       }
     });
-    console.log(matching);
-    filtratPerGeneres(matching);
+    //console.log(matching);
+    vistaLlistaSeries(matching);
 	
 }
 
@@ -100,14 +112,13 @@ function cercaPerGenere(generesFiltre) {
     seriesRef.on('value', function(snapshot) {
       if(snapshot.val() !== null) {
         snapshot.forEach(function(csnap) {
-          console.log(csnap.name(), csnap.val());
+          //console.log(csnap.name(), csnap.val());
           serie = csnap.val();
           generesSerie = serie.generes.split(",");
           $.each(generesSerie, function(i) { generesSerie[i] = generesSerie[i].trim(); });
           $.each(generesFiltre, function(index, item) {
-            if (generesSerie.indexOf(item) != -1 &&
-               !matching.hasOwnProperty(csnap.name())) {
-                console.log("Matching! Serie " + serie.titol_es + " genere " + item);
+            if (generesSerie.indexOf(item) != -1 && !matching.hasOwnProperty(csnap.name())) {
+                //console.log("Matching! Serie " + serie.titol_es + " genere " + item);
               	matching[csnap.name()] = serie;
             }
           });
@@ -115,8 +126,9 @@ function cercaPerGenere(generesFiltre) {
       	});
       }
     });
-    console.log(matching);
-    filtratPerGeneres(matching);
+    //console.log(matching);
+    vistaLlistaSeries(matching);
+    
 }
 
 function cercaPerIdioma(idiomaFiltre) {
@@ -127,14 +139,13 @@ function cercaPerIdioma(idiomaFiltre) {
     seriesRef.on('value', function(snapshot) {
       if(snapshot.val() !== null) {
         snapshot.forEach(function(csnap) {
-          console.log(csnap.name(), csnap.val());
+          //console.log(csnap.name(), csnap.val());
           serie = csnap.val();
           idiomaSerie = serie.idioma.split(",");
           $.each(idiomaSerie, function(i) { idiomaSerie[i] = idiomaSerie[i].trim(); });
           $.each(idiomaFiltre, function(index, item) {
-            if (idiomaSerie.indexOf(item) != -1 &&
-               !matching.hasOwnProperty(csnap.name())) {
-                console.log("Matching! Serie " + serie.titol_es + " genere " + item);
+            if (idiomaSerie.indexOf(item) != -1 && !matching.hasOwnProperty(csnap.name())) {
+                //console.log("Matching! Serie " + serie.titol_es + " genere " + item);
               	matching[csnap.name()] = serie;
             }
           });
@@ -142,96 +153,17 @@ function cercaPerIdioma(idiomaFiltre) {
       	});
       }
     });
-    console.log(matching);
-    filtratPerGeneres(matching);
-	
-	
-}
-
-
-function filtratPerGeneres(matching){
-
-	var div = document.getElementById('mostrar-series');
-   var llista = document.createElement("ul");
-   llista.className = "llista-resultats-item";
-   div.appendChild(llista);
-   
-	for (var atribut in matching){
-		var objSerie = matching[atribut];
-      
-      // Cada serie és un <li>
-				var serie = document.createElement("li");
-				serie.className = "caixa-serie-item";
-				llista.appendChild(serie);
-				
-					// Div de la caratula
-					var divCaratula = document.createElement("div");
-					divCaratula.className = "llista-resultats-caratula";
-					serie.appendChild(divCaratula);
-				
-					// Caratula enllaç <a>
-					var aCaratula = document.createElement("a");
-					aCaratula.className = "pull-left";
-					aCaratula.href = "";
-					divCaratula.appendChild(aCaratula);
-						
-					// Imatge caratula <img>
-					var imgCaratula = document.createElement("img");
-					imgCaratula.className = "caratula-llista";
-					imgCaratula.src = objSerie.caratula;
-					aCaratula.appendChild(imgCaratula);
-					
-					// Div gran informació
-					var divGranInfo = document.createElement("div");
-					divGranInfo.className = "llista-contenidor-item";
-					serie.appendChild(divGranInfo);
-					
-					// Títol <a>
-					var aTitol = document.createElement("a");
-					aTitol.className = "llista-titol";
-					aTitol.href = "";
-					var titol_es = document.createTextNode(objSerie.titol_es);
-					aTitol.appendChild(titol_es);
-					divGranInfo.appendChild(aTitol);
-					
-					// Div info basica segona linia
-					var divInfoBasica = document.createElement("div");
-					divInfoBasica.className = "llista-info-basica";
-					
-					// No esta acabat. Falten els espais en blanc <&nbsp;>
-					var segonaLinia = document.createTextNode(objSerie.any_estrena+" | "+objSerie.puntuacio_global+" | "+objSerie.generes);
-					divInfoBasica.appendChild(segonaLinia);
-					divGranInfo.appendChild(divInfoBasica);
-						
-						//Div sinopsis
-						var divSinopsis = document.createElement("div");
-						divSinopsis.className = "llista-sinopsis";
-						var textSinopsis = document.createTextNode(objSerie.sinopsis);
-						divSinopsis.appendChild(textSinopsis);
-            divGranInfo.appendChild(divSinopsis);
-						
-						//Div info extra ultima linia
-						var divInfoExtra = document.createElement("div");
-						divInfoExtra.className = "llista-info-extra";
-						var ultimaLinia = document.createTextNode("Temporades: "+objSerie.temporades+" | Capítols totals: "+objSerie.capitols_totals+" | Durada: "+objSerie.durada_episodis+" min.");
-						divInfoExtra.appendChild(ultimaLinia);
-					divGranInfo.appendChild(divInfoExtra);
-		
-		
-		
-	}
+    //console.log(matching);
+    vistaLlistaSeries(matching);
 	
 }
-
 
 function uncheckAll() {
-
 	var cbarray = document.getElementsByTagName("input");
    
    for(var i = 0; i < cbarray.length; i++){
 		cbarray[i].checked = false;
 	}   
-  
 }
 
 function crearBuscadors(fbURL, divID) {
@@ -274,87 +206,80 @@ function crearBuscadors(fbURL, divID) {
    });
 }
 
-function vistaLlistaSeries(fbURL) {
+function vistaLlistaSeries(matching) {
 
-	var seriesRef = new Firebase(fbURL);
-   seriesRef.on('value', function(snapshot) {
-   	if(snapshot.val() === null) {
-      	console.log('La taula series no existeix.');
-      } else {
+	console.log("DINS DE LA FUNCIÓ");
+	console.log(matching);
+	
+	var div = document.getElementById('mostrar-series');
+	var llista = document.createElement("ul");
+	llista.className = "llista-resultats-item";
+	div.appendChild(llista);	
+	
+	for (var atribut in matching){
+		var objSerie = matching[atribut];
+		
+		// Cada serie és un <li>
+		var serie = document.createElement("li");
+		serie.className = "caixa-serie-item";
+		llista.appendChild(serie);
+				
+		// Div de la caratula
+		var divCaratula = document.createElement("div");
+		divCaratula.className = "llista-resultats-caratula";
+		serie.appendChild(divCaratula);
+	
+		// Caratula enllaç <a>
+		var aCaratula = document.createElement("a");
+		aCaratula.className = "pull-left";
+		aCaratula.href = "";
+		divCaratula.appendChild(aCaratula);
 			
-      	var div = document.getElementById('mostrar-series');
-         var llista = document.createElement("ul");
-         llista.className = "llista-resultats-item";
-         div.appendChild(llista);
-         
-        
-
-			snapshot.forEach(function(childSnapshot) {
-				var idSerie = childSnapshot.name();
-				var objSerie = childSnapshot.val();
-				
-				// Cada serie és un <li>
-				var serie = document.createElement("li");
-				serie.className = "caixa-serie-item";
-				llista.appendChild(serie);
-				
-					// Div de la caratula
-					var divCaratula = document.createElement("div");
-					divCaratula.className = "llista-resultats-caratula";
-					serie.appendChild(divCaratula);
-				
-					// Caratula enllaç <a>
-					var aCaratula = document.createElement("a");
-					aCaratula.className = "pull-left";
-					aCaratula.href = "";
-					divCaratula.appendChild(aCaratula);
-						
-					// Imatge caratula <img>
-					var imgCaratula = document.createElement("img");
-					imgCaratula.className = "caratula-llista";
-					imgCaratula.src = objSerie.caratula;
-					aCaratula.appendChild(imgCaratula);
-					
-					// Div gran informació
-					var divGranInfo = document.createElement("div");
-					divGranInfo.className = "llista-contenidor-item";
-					serie.appendChild(divGranInfo);
-					
-					// Títol <a>
-					var aTitol = document.createElement("a");
-					aTitol.className = "llista-titol";
-					aTitol.href = "";
-					var titol_es = document.createTextNode(objSerie.titol_es);
-					aTitol.appendChild(titol_es);
-					divGranInfo.appendChild(aTitol);
-					
-					// Div info basica segona linia
-					var divInfoBasica = document.createElement("div");
-					divInfoBasica.className = "llista-info-basica";
-					
-					// No esta acabat. Falten els espais en blanc <&nbsp;>
-					var segonaLinia = document.createTextNode(objSerie.any_estrena+" | "+objSerie.puntuacio_global+" | "+objSerie.generes);
-					divInfoBasica.appendChild(segonaLinia);
-					divGranInfo.appendChild(divInfoBasica);
-						
-						//Div sinopsis
-						var divSinopsis = document.createElement("div");
-						divSinopsis.className = "llista-sinopsis";
-						var textSinopsis = document.createTextNode(objSerie.sinopsis);
-						divSinopsis.appendChild(textSinopsis);
-            divGranInfo.appendChild(divSinopsis);
-						
-						//Div info extra ultima linia
-						var divInfoExtra = document.createElement("div");
-						divInfoExtra.className = "llista-info-extra";
-						var ultimaLinia = document.createTextNode("Temporades: "+objSerie.temporades+" | Capítols totals: "+objSerie.capitols_totals+" | Durada: "+objSerie.durada_episodis+" min.");
-						divInfoExtra.appendChild(ultimaLinia);
-					divGranInfo.appendChild(divInfoExtra);
-						
-			});
-				
-      }
-   });
+		// Imatge caratula <img>
+		var imgCaratula = document.createElement("img");
+		imgCaratula.className = "caratula-llista";
+		imgCaratula.src = objSerie.caratula;
+		aCaratula.appendChild(imgCaratula);
+		
+		// Div gran informació
+		var divGranInfo = document.createElement("div");
+		divGranInfo.className = "llista-contenidor-item";
+		serie.appendChild(divGranInfo);
+		
+		// Títol <a>
+		var aTitol = document.createElement("a");
+		aTitol.className = "llista-titol";
+		aTitol.href = "";
+		var titol_es = document.createTextNode(objSerie.titol_es);
+		aTitol.appendChild(titol_es);
+		divGranInfo.appendChild(aTitol);
+		
+		// Div info basica segona linia
+		var divInfoBasica = document.createElement("div");
+		divInfoBasica.className = "llista-info-basica";
+		
+		// No esta acabat. Falten els espais en blanc <&nbsp;>
+		var segonaLinia = document.createTextNode(objSerie.any_estrena+" | "+objSerie.puntuacio_global+" | "+objSerie.generes);
+		divInfoBasica.appendChild(segonaLinia);
+		divGranInfo.appendChild(divInfoBasica);
+			
+		//Div sinopsis
+		var divSinopsis = document.createElement("div");
+		divSinopsis.className = "llista-sinopsis";
+		var textSinopsis = document.createTextNode(objSerie.sinopsis);
+		divSinopsis.appendChild(textSinopsis);
+   	divGranInfo.appendChild(divSinopsis);
+			
+		//Div info extra ultima linia
+		var divInfoExtra = document.createElement("div");
+		divInfoExtra.className = "llista-info-extra";
+		var ultimaLinia = document.createTextNode("Temporades: "+objSerie.temporades+" | Capítols totals: "+objSerie.capitols_totals+" | Durada: "+objSerie.durada_episodis+" min.");
+		divInfoExtra.appendChild(ultimaLinia);
+		divGranInfo.appendChild(divInfoExtra);
+		
+	}
+	
+	console.log("DESPRES DEL BUCLE");
 
 }
 
