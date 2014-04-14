@@ -2288,11 +2288,11 @@ TO DO:
 		c) 1 genere + 2 decades  --> fet
 		d) 2 generes + 2 decades --> fet
 		
-	1.2- Idioma + Decada
-		a) 1 idioma + 1 decada
-		b) 2 idiomes + 1 decada
-		c) 1 idioma + 2 decades
-		d) 2 idiomes + 2 decades
+	1.2- Idioma + Decada ---------> FET
+		a) 1 idioma + 1 decada   --> fet
+		b) 2 idiomes + 1 decada  --> fet
+		c) 1 idioma + 2 decades  --> fet
+		d) 2 idiomes + 2 decades --> fet
 		
 	1.3- Genere + Idioma
 		a) 1 genere + 1 idioma
@@ -2434,6 +2434,51 @@ function comboFiltres (decadaFiltre,generesFiltre,idiomaFiltre){
 		            }
 		          });	
 				} 
+			// 2- DECADA + IDIOMA
+			} else if (generesFiltre.length == 0 && decadaFiltre.length > 0 && idiomaFiltre.length > 0){
+				// 2.1) 1 idioma + 1 decada  &&  2.2) 2 idiomes + 1 decada  &&  2.3) 1 idioma + 2 decades  && 2.4) 2 idiomes + 2 decades
+				if ( (decadaFiltre.length == 1 && idiomaFiltre.length == 1) || (decadaFiltre.length == 1 && idiomaFiltre.length >= 2) || (decadaFiltre.length >= 2 && idiomaFiltre.length == 1) || (decadaFiltre.length >= 2 && idiomaFiltre.length >= 2) ){
+					if ( (decadaFiltre.indexOf("60s") != -1) && (decadaSerie>=1960 && decadaSerie<=1969)){
+		         	$.each(idiomaFiltre, function(index, item) {
+			            if (idiomaSerie.indexOf(item) != -1 && !matching.hasOwnProperty(csnap.name())) {
+			              	matching[csnap.name()] = serie;
+			            }
+			          });
+		         } else if ( (decadaFiltre.indexOf("70s") != -1) && (decadaSerie>=1970 && decadaSerie<=1979) ){
+		         	$.each(idiomaFiltre, function(index, item) {
+			            if (idiomaSerie.indexOf(item) != -1 && !matching.hasOwnProperty(csnap.name())) {
+			              	matching[csnap.name()] = serie;
+			            }
+			          });
+		         } else if ( (decadaFiltre.indexOf("80s") != -1) && (decadaSerie>=1980 && decadaSerie<=1989) ){
+		         	$.each(idiomaFiltre, function(index, item) {
+			            if (idiomaSerie.indexOf(item) != -1 && !matching.hasOwnProperty(csnap.name())) {
+			              	matching[csnap.name()] = serie;
+			            }
+			          });
+		         } else if ( (decadaFiltre.indexOf("90s") != -1) && (decadaSerie>=1990 && decadaSerie<=1999)){
+		         	$.each(idiomaFiltre, function(index, item) {
+			            if (idiomaSerie.indexOf(item) != -1 && !matching.hasOwnProperty(csnap.name())) {
+			              	matching[csnap.name()] = serie;
+			            }
+			          });
+		         } else if ( (decadaFiltre.indexOf("Actual (>2000)") != -1) && decadaSerie>=2000){
+		         	$.each(idiomaFiltre, function(index, item) {
+			            if (idiomaSerie.indexOf(item) != -1 && !matching.hasOwnProperty(csnap.name())) {
+			              	matching[csnap.name()] = serie;
+			            }
+			          });
+		         }
+		      //
+				}
+				
+			// 3- GENERE + IDIOMA
+			} else if (generesFiltre.length > 0 && decadaFiltre.length == 0 && idiomaFiltre.length > 0){
+				console.log("Genere + idioma");
+				
+			// 4- GENERE + IDIOMA + DECADA
+			} else if (generesFiltre.length > 0 && decadaFiltre.length > 0 && idiomaFiltre.length > 0){
+				console.log("Genere + idioma + decada");
 			}
          
          
@@ -2533,11 +2578,19 @@ function cercaPerIdioma(idiomaFiltre) {
 }
 
 function uncheckAll() {
+
+	// Borrar checkboxes
 	var cbarray = document.getElementsByTagName("input");
    
    for(var i = 0; i < cbarray.length; i++){
 		cbarray[i].checked = false;
 	}   
+	
+	// Borrar les series que ja estaven, i crear una nova amb totes
+	var div = document.getElementById('mostrar-series');
+	while( div.hasChildNodes() ){
+   	div.removeChild(div.lastChild);
+	}
 	
 	vistaLlistaSeries(recollirTotesSeries());
 }
