@@ -1,13 +1,27 @@
 ﻿/*
 
 TO DO:
-1- Canviar estructura checkboxes (estructura + agafar be els valors) --> FET
-2- Fer que funcioni filtrar per genere --> FET
-3- Fer que funcioni filtrar per idioma --> FET
-4- Fer que funcioni filtrar per buscador rapid (ordre alfabetic i per puntuació)
-5- Fer que funcioni filtrar per decada --> FET
-6- Ajuntar tots els filtres
-7- Externalitzar la funció per crear el llistat de series --> FET
+1- Ajuntar tots els filtres:
+	1.1- Genere + Decada ---------> FET
+		a) 1 genere + 1 decada   --> fet
+		b) 2 generes + 1 decada  --> fet
+		c) 1 genere + 2 decades  --> fet
+		d) 2 generes + 2 decades --> fet
+		
+	1.2- Idioma + Decada
+		a) 1 idioma + 1 decada
+		b) 2 idiomes + 1 decada
+		c) 1 idioma + 2 decades
+		d) 2 idiomes + 2 decades
+		
+	1.3- Genere + Idioma
+		a) 1 genere + 1 idioma
+		b) 2 generes + 1 idioma
+		c) 1 genere + 2 idiomes
+		d) 2 generes + 2 idiomes
+	
+	1.4- Genere + Idioma + Decada
+
 
 */
 
@@ -64,15 +78,95 @@ function filtrarChecked() {
 	
 	console.log(filtres);
 	
+	// Filtrar combinant els filtres
+	comboFiltres(filtres.buscador_decada,filtres.buscador_genere,filtres.buscador_idiomes);
+	
 	// Filtrar per genere
-	cercaPerGenere(filtres.buscador_genere);
+	//cercaPerGenere(filtres.buscador_genere);
 	// Filtrar per idiomes
-	cercaPerIdioma(filtres.buscador_idiomes);
+	//cercaPerIdioma(filtres.buscador_idiomes);
 	// Filtrar per decada
-	cercaPerDecada(filtres.buscador_decada);
-
+	//cercaPerDecada(filtres.buscador_decada);
 	
 }
+
+function comboFiltres (decadaFiltre,generesFiltre,idiomaFiltre){
+	var matching = {};
+   var serie, decadaSerie,genereSerie,idiomaSerie;
+   var seriesRef = new Firebase(fbRef).child("series");
+   seriesRef.on('value', function(snapshot) {
+     if(snapshot.val() !== null) {
+       snapshot.forEach(function(csnap) {
+         serie = csnap.val();
+         decadaSerie = serie.any_estrena;
+         idiomaSerie = serie.idioma;
+         generesSerie = serie.generes.split(",");
+         $.each(generesSerie, function(i) { generesSerie[i] = generesSerie[i].trim(); });
+         
+         // 1- GENERE + DECADA
+         if (generesFiltre.length > 0 && decadaFiltre.length > 0 && idiomaFiltre.length == 0){
+         	// 1.1) 1 genere + 1 decada  &&  1.4) 2 generes + 2 decades
+				if ( (generesFiltre.length == 1 && decadaFiltre.length == 1) || (generesFiltre.length >= 2 && decadaFiltre.length >= 2) ){
+					if ( (decadaFiltre.indexOf("60s") != -1) && (decadaSerie>=1960 && decadaSerie<=1969)){
+		         	$.each(generesFiltre, function(index, item) {
+			            if (generesSerie.indexOf(item) != -1 && !matching.hasOwnProperty(csnap.name())) {
+			              	matching[csnap.name()] = serie;
+			            }
+			          });
+		         } else if ( (decadaFiltre.indexOf("70s") != -1) && (decadaSerie>=1970 && decadaSerie<=1979) ){
+		         	$.each(generesFiltre, function(index, item) {
+			            if (generesSerie.indexOf(item) != -1 && !matching.hasOwnProperty(csnap.name())) {
+			              	matching[csnap.name()] = serie;
+			            }
+			          });
+		         } else if ( (decadaFiltre.indexOf("80s") != -1) && (decadaSerie>=1980 && decadaSerie<=1989) ){
+		         	$.each(generesFiltre, function(index, item) {
+			            if (generesSerie.indexOf(item) != -1 && !matching.hasOwnProperty(csnap.name())) {
+			              	matching[csnap.name()] = serie;
+			            }
+			          });
+		         } else if ( (decadaFiltre.indexOf("90s") != -1) && (decadaSerie>=1990 && decadaSerie<=1999)){
+		         	$.each(generesFiltre, function(index, item) {
+			            if (generesSerie.indexOf(item) != -1 && !matching.hasOwnProperty(csnap.name())) {
+			              	matching[csnap.name()] = serie;
+			            }
+			          });
+		         } else if ( (decadaFiltre.indexOf("Actual (>2000)") != -1) && decadaSerie>=2000){
+		         	$.each(generesFiltre, function(index, item) {
+			            if (generesSerie.indexOf(item) != -1 && !matching.hasOwnProperty(csnap.name())) {
+			              	matching[csnap.name()] = serie;
+			            }
+			          });
+		         }
+		      // 1.2) 2 generes + 1 decada  &&  1.3) 1 genere + 2 decades
+				} else if ( (generesFiltre.length >= 2 && decadaFiltre.length == 1) || (generesFiltre.length == 1 && decadaFiltre.length >= 2) ){
+					$.each(generesFiltre, function(index, item) {
+		            if ( (generesSerie.indexOf(item) != -1 && !matching.hasOwnProperty(csnap.name())) &&  ((decadaFiltre.indexOf("60s") != -1) && (decadaSerie>=1960 && decadaSerie<=1969)) ) {
+		              	matching[csnap.name()] = serie;
+		            } else if ( (generesSerie.indexOf(item) != -1 && !matching.hasOwnProperty(csnap.name())) && ((decadaFiltre.indexOf("70s") != -1) && (decadaSerie>=1970 && decadaSerie<=1979)) ){
+		            	matching[csnap.name()] = serie;
+		            } else if ( (generesSerie.indexOf(item) != -1 && !matching.hasOwnProperty(csnap.name())) && ((decadaFiltre.indexOf("80s") != -1) && (decadaSerie>=1980 && decadaSerie<=1989)) ){
+		            	matching[csnap.name()] = serie;
+		            } else if ( (generesSerie.indexOf(item) != -1 && !matching.hasOwnProperty(csnap.name())) &&((decadaFiltre.indexOf("90s") != -1) && (decadaSerie>=1990 && decadaSerie<=1999))){
+		            	matching[csnap.name()] = serie;
+		            } else if ( (generesSerie.indexOf(item) != -1 && !matching.hasOwnProperty(csnap.name())) && ((decadaFiltre.indexOf("Actual (>2000)") != -1) && (decadaSerie>=2000)) ){
+		            	matching[csnap.name()] = serie;
+		            }
+		          });	
+				} 
+			}
+         
+         
+         
+     	});
+     }
+   });
+
+	console.log(matching);
+	vistaLlistaSeries(matching);
+	
+}
+
 
 function cercaPerDecada(decadaFiltre) {
 	console.log("Cerca per decada: "+decadaFiltre);
