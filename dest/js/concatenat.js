@@ -2294,11 +2294,11 @@ TO DO:
 		c) 1 idioma + 2 decades  --> fet
 		d) 2 idiomes + 2 decades --> fet
 		
-	1.3- Genere + Idioma
-		a) 1 genere + 1 idioma
-		b) 2 generes + 1 idioma
-		c) 1 genere + 2 idiomes
-		d) 2 generes + 2 idiomes
+	1.3- Genere + Idioma ---------> FET
+		a) 1 genere + 1 idioma   --> fet
+		b) 2 generes + 1 idioma  --> fet
+		c) 1 genere + 2 idiomes  --> fet
+		d) 2 generes + 2 idiomes --> fet
 	
 	1.4- Genere + Idioma + Decada
 
@@ -2474,7 +2474,21 @@ function comboFiltres (decadaFiltre,generesFiltre,idiomaFiltre){
 				
 			// 3- GENERE + IDIOMA
 			} else if (generesFiltre.length > 0 && decadaFiltre.length == 0 && idiomaFiltre.length > 0){
-				console.log("Genere + idioma");
+				// 3.1) 1 genere + 1 idioma  &&  3.2) 2 generes + 1 idioma
+				if ( (generesFiltre.length == 1 && idiomaFiltre.length == 1) || (generesFiltre.length >= 2 && idiomaFiltre.length == 1) ) {
+	         	$.each(generesFiltre, function(index, item) {
+		            if ( (generesSerie.indexOf(item) != -1 && !matching.hasOwnProperty(csnap.name())) && (idiomaSerie == idiomaFiltre) ) {
+		              	matching[csnap.name()] = serie;
+		            }
+		          });
+		      // 3.3) 1 genere + 2 idiomes  &&  3.4) 2 generes + 2 idiomes
+				} else if ( (generesFiltre.length == 1 && idiomaFiltre.length >= 2) || (generesFiltre.length >= 2 && idiomaFiltre.length >= 2) ){
+					$.each(generesFiltre, function(index, item) {
+		            if ( generesSerie.indexOf(item) != -1 && !matching.hasOwnProperty(csnap.name()) ) {
+		              	matching[csnap.name()] = serie;
+		            }
+		          });
+				}
 				
 			// 4- GENERE + IDIOMA + DECADA
 			} else if (generesFiltre.length > 0 && decadaFiltre.length > 0 && idiomaFiltre.length > 0){
