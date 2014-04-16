@@ -13,6 +13,6 @@
 		crearBuscadors(fbRef + buscadors[i].url, buscadors[i].domID);
 	}
 	
-	vistaLlistaSeries(recollirTotesSeries());
+	recollirTotesSeries(vistaLlistaSeries);
 	
 });

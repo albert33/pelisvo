@@ -1,6 +1,6 @@
 ﻿var fbRef = "https://pelisvo.firebaseio.com/";
 
-function recollirTotesSeries(){
+function recollirTotesSeries(callback) {
 
 	var matching = {};
    var serie;
@@ -10,12 +10,14 @@ function recollirTotesSeries(){
        snapshot.forEach(function(csnap) {
          serie = csnap.val();
          matching[csnap.name()] = serie;
-         
      	});
+     	if (!$.isEmptyObject(matching) && callback && $.isFunction(callback)) {
+     	   // you can use call or apply:
+     	   // http://stackoverflow.com/questions/1986896/what-is-the-difference-between-call-and-apply
+         callback.call(window, matching);
+     	}
      }
    });
-   
-	return matching;
 }
 
 function filtrarChecked() {
@@ -275,7 +277,7 @@ function uncheckAll() {
    	div.removeChild(div.lastChild);
 	}
 	
-	vistaLlistaSeries(recollirTotesSeries());
+  recollirTotesSeries(vistaLlistaSeries);
 }
 
 function crearBuscadors(fbURL, divID) {
