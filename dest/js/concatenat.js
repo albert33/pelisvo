@@ -2280,7 +2280,7 @@
 }(window.jQuery);
 var fbRef = "https://pelisvo.firebaseio.com/";
 
-function recollirTotesSeries(){
+function recollirTotesSeries(callback) {
 
 	var matching = {};
    var serie;
@@ -2290,12 +2290,14 @@ function recollirTotesSeries(){
        snapshot.forEach(function(csnap) {
          serie = csnap.val();
          matching[csnap.name()] = serie;
-         
      	});
+     	if (!$.isEmptyObject(matching) && callback && $.isFunction(callback)) {
+     	   // you can use call or apply:
+     	   // http://stackoverflow.com/questions/1986896/what-is-the-difference-between-call-and-apply
+         callback.call(window, matching);
+     	}
      }
    });
-   
-	return matching;
 }
 
 function filtrarChecked() {
@@ -2326,8 +2328,6 @@ function filtrarChecked() {
 			filtres.buscador_decada.push(cbarray[i].value);
 		}
 	}
-	
-	console.log(filtres);
 	
 	// Filtrar combinant els filtres
 	comboFiltres(filtres.buscador_decada,filtres.buscador_genere,filtres.buscador_idiomes);
@@ -2555,7 +2555,7 @@ function uncheckAll() {
    	div.removeChild(div.lastChild);
 	}
 	
-	vistaLlistaSeries(recollirTotesSeries());
+  recollirTotesSeries(vistaLlistaSeries);
 }
 
 function crearBuscadors(fbURL, divID) {
@@ -2680,15 +2680,45 @@ function gestionaCampDeCerca (evt) {
 
 		if (evt && evt.which === 13) {
 			evt.preventDefault();
-			console.log($(this).val());
-			// TODO: agafar el text, enviar-lo a FB i
-			// agafar resultats, omplir la pagina.
-			// o be fer un redirect o be fer un asyncron.
-			$(this).val("");
 
-			// subfuncions
+			serieCercada($(this).val());
+			
+			$(this).val("");
 		}
 
+}
+
+function serieCercada(titolCerca) {
+
+	//Recollir totes les series
+	var matching = {};
+	var titol = titolCerca.toLowerCase();
+   var serie, titolSerieES, titolSerieVO;
+   var seriesRef = new Firebase(fbRef).child("series");
+   seriesRef.on('value', function(snapshot) {
+     if(snapshot.val() !== null) {
+       snapshot.forEach(function(csnap) {
+         serie = csnap.val();
+         titolSerieES = serie.titol_es.toLowerCase();
+         titolSerieVO = serie.titol_original.toLowerCase();
+         
+         //Comparar argument del camp de cerca amb els titols de les series
+         if ( (titolSerieES.indexOf(titol) != -1) || (titolSerieVO.indexOf(titol) != -1) ){
+         	matching[csnap.name()] = serie;
+         }
+         
+       });
+     }
+   });
+	
+	//Borrar llista de series per reescriure-la amb la serie cercada
+	var div = document.getElementById('mostrar-series');
+	while( div.hasChildNodes() ){
+   	div.removeChild(div.lastChild);
+	}
+	
+   vistaLlistaSeries(matching);
+	
 }
 $( document ).ready(function() {
 	
@@ -2705,6 +2735,6 @@ $( document ).ready(function() {
 		crearBuscadors(fbRef + buscadors[i].url, buscadors[i].domID);
 	}
 	
-	vistaLlistaSeries(recollirTotesSeries());
+	recollirTotesSeries(vistaLlistaSeries);
 	
 });
