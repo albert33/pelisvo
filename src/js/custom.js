@@ -49,8 +49,6 @@ function filtrarChecked() {
 		}
 	}
 	
-	console.log(filtres);
-	
 	// Filtrar combinant els filtres
 	comboFiltres(filtres.buscador_decada,filtres.buscador_genere,filtres.buscador_idiomes);
 	
@@ -402,13 +400,43 @@ function gestionaCampDeCerca (evt) {
 
 		if (evt && evt.which === 13) {
 			evt.preventDefault();
-			console.log($(this).val());
-			// TODO: agafar el text, enviar-lo a FB i
-			// agafar resultats, omplir la pagina.
-			// o be fer un redirect o be fer un asyncron.
-			$(this).val("");
 
-			// subfuncions
+			serieCercada($(this).val());
+			
+			$(this).val("");
 		}
 
+}
+
+function serieCercada(titolCerca) {
+
+	//Recollir totes les series
+	var matching = {};
+	var titol = titolCerca.toLowerCase();
+   var serie, titolSerieES, titolSerieVO;
+   var seriesRef = new Firebase(fbRef).child("series");
+   seriesRef.on('value', function(snapshot) {
+     if(snapshot.val() !== null) {
+       snapshot.forEach(function(csnap) {
+         serie = csnap.val();
+         titolSerieES = serie.titol_es.toLowerCase();
+         titolSerieVO = serie.titol_original.toLowerCase();
+         
+         //Comparar argument del camp de cerca amb els titols de les series
+         if ( (titolSerieES.indexOf(titol) != -1) || (titolSerieVO.indexOf(titol) != -1) ){
+         	matching[csnap.name()] = serie;
+         }
+         
+       });
+     }
+   });
+	
+	//Borrar llista de series per reescriure-la amb la serie cercada
+	var div = document.getElementById('mostrar-series');
+	while( div.hasChildNodes() ){
+   	div.removeChild(div.lastChild);
+	}
+	
+   vistaLlistaSeries(matching);
+	
 }
